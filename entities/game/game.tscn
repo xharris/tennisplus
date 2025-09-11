@@ -1,17 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://450pjljv18g8"]
+[gd_scene load_steps=5 format=3 uid="uid://450pjljv18g8"]
 
 [ext_resource type="Script" uid="uid://5bxiypk11n6v" path="res://entities/game/game.gd" id="1_j054j"]
 [ext_resource type="PackedScene" uid="uid://cy0xaqlkrhrbc" path="res://entities/ball/ball.tscn" id="1_uqg41"]
 [ext_resource type="PackedScene" uid="uid://dghq8stxw47f2" path="res://entities/paddle/paddle.tscn" id="2_5xshk"]
 
+[sub_resource type="Curve2D" id="Curve2D_j054j"]
+_data = {
+"points": PackedVector2Array(-221.445, 121.352, 221.445, -121.352, -2, -1, -266.62, -120.466, 266.62, 120.466, 488, -1)
+}
+point_count = 2
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_j054j")
 
 [node name="Ball" parent="." instance=ExtResource("1_uqg41")]
-position = Vector2(198, 114)
+position = Vector2(157, 141)
 
 [node name="PaddleL" parent="." instance=ExtResource("2_5xshk")]
-position = Vector2(203, 393)
+position = Vector2(158, 391)
 
 [node name="PaddleR" parent="." instance=ExtResource("2_5xshk")]
-position = Vector2(841, 382)
+position = Vector2(987, 412)
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(3, 4)
+curve = SubResource("Curve2D_j054j")
