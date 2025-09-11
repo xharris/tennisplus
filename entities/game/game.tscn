@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://450pjljv18g8"]
+
+[ext_resource type="Script" uid="uid://5bxiypk11n6v" path="res://entities/game/game.gd" id="1_j054j"]
+[ext_resource type="PackedScene" uid="uid://cy0xaqlkrhrbc" path="res://entities/ball/ball.tscn" id="1_uqg41"]
+[ext_resource type="PackedScene" uid="uid://dghq8stxw47f2" path="res://entities/paddle/paddle.tscn" id="2_5xshk"]
+[ext_resource type="Script" uid="uid://c6prci5yjifo0" path="res://entities/ball/ball_visitor.gd" id="4_vbwj1"]
+[ext_resource type="Resource" uid="uid://dnsce50mrw7cc" path="res://resources/ball_visitors/target_random_paddle.tres" id="5_vbwj1"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_j054j")
+
+[node name="Ball" parent="." instance=ExtResource("1_uqg41")]
+position = Vector2(198, 114)
+
+[node name="PaddleL" parent="." instance=ExtResource("2_5xshk")]
+position = Vector2(203, 393)
+on_hit_ball = Array[ExtResource("4_vbwj1")]([ExtResource("5_vbwj1")])
+
+[node name="PaddleR" parent="." instance=ExtResource("2_5xshk")]
+position = Vector2(841, 382)
+on_hit_ball = Array[ExtResource("4_vbwj1")]([ExtResource("5_vbwj1")])

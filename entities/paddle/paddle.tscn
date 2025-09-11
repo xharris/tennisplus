@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://dghq8stxw47f2"]
+
+[ext_resource type="Script" uid="uid://c4gbleewti277" path="res://entities/paddle/paddle.gd" id="1_8l56v"]
+[ext_resource type="Script" uid="uid://1er4pw6hd8yo" path="res://entities/paddle/paddle_input.gd" id="1_d472v"]
+[ext_resource type="Script" uid="uid://babhlywige3u0" path="res://entities/paddle/paddle_hitbox.gd" id="1_frr1j"]
+[ext_resource type="Script" uid="uid://c6prci5yjifo0" path="res://entities/ball/ball_visitor.gd" id="2_akf0g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y5mnh"]
+radius = 64.0
+
+[node name="Paddle" type="Node2D"]
+script = ExtResource("1_8l56v")
+on_hit_ball = Array[ExtResource("2_akf0g")]([null])
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("1_frr1j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_y5mnh")
+
+[node name="Input" type="Node2D" parent="."]
+script = ExtResource("1_d472v")
