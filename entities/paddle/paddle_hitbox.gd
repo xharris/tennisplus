@@ -1,7 +1,34 @@
 extends Area2D
 class_name PaddleHitbox
 
-var _log = Logger.new("paddle_hitbox")
+@export var on_hit_ball: Array[BallVisitor]
+## [code]true[/code]: will not trigger overlapping PaddleHitbox
+@export var stop_propagation: bool = true
+## On hit, hitboxes of the same [code]hitbox_group[/code] cannot
+## hit the same body until it has exited the hitbox with
+## [code]reset_group_on_body_exited[/code] set to [code]true[/code]
+## [br][br]
+## Empty string counts as a group
+@export var hitbox_group: StringName
+@export var reset_group_on_body_exit: bool
 
-func get_collisions() -> Array[Node2D]:
-    return get_overlapping_bodies()
+var _log = Logger.new("paddle_hitbox")
+var _entered_bodies: Dictionary
+var disabled: bool = false
+
+func _ready() -> void:
+    add_to_group(Groups.PADDLE_HITBOX)
+    body_entered.connect(_on_body_entered)
+    body_exited.connect(_on_body_exited)
+
+func _on_body_entered(body: Node2D):
+    _entered_bodies[body] = body
+
+func _on_body_exited(body: Node2D):
+    _entered_bodies.erase(body)   
+    
+## returns [code]true[/code] if something is hit
+func get_entered_bodies() -> Array[Node2D]:
+    var out: Array[Node2D]
+    out.assign(_entered_bodies.values())
+    return out

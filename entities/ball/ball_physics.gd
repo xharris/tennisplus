@@ -30,5 +30,5 @@ func set_target(target: Node2D):
     # tween on path
     _tween = create_tween()
     _tween.set_trans(Tween.TRANS_LINEAR)
-    _tween.set_ease(Tween.EASE_IN)
-    _tween.tween_property(self, "_progress", 1, 1).from(0)
+    _tween.set_ease(Tween.EASE_OUT)
+    _tween.tween_property(self, "_progress", 1, Constants.BALL_PHYSICS_TWEEN_DURATION).from(0)

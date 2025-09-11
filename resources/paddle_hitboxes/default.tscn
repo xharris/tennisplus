@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://x88a7460y3x3"]
+
+[ext_resource type="PackedScene" uid="uid://b5ojur7k7urdw" path="res://entities/paddle/paddle_hitbox.tscn" id="1_46lrs"]
+[ext_resource type="Script" uid="uid://c6prci5yjifo0" path="res://entities/ball/ball_visitor.gd" id="2_atnhs"]
+[ext_resource type="Resource" uid="uid://dnsce50mrw7cc" path="res://resources/ball_visitors/target_random_paddle.tres" id="3_my7su"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vwoo2"]
+radius = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fk22a"]
+radius = 96.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nnd5b"]
+radius = 120.0
+
+[node name="Default" type="Node2D"]
+
+[node name="Inner" parent="." instance=ExtResource("1_46lrs")]
+on_hit_ball = Array[ExtResource("2_atnhs")]([ExtResource("3_my7su")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inner"]
+shape = SubResource("CircleShape2D_vwoo2")
+debug_color = Color(0.298039, 0.686275, 0.313726, 0.419608)
+
+[node name="Middle" parent="." instance=ExtResource("1_46lrs")]
+on_hit_ball = Array[ExtResource("2_atnhs")]([ExtResource("3_my7su")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Middle"]
+shape = SubResource("CircleShape2D_fk22a")
+debug_color = Color(1, 0.921569, 0.231373, 0.419608)
+
+[node name="Outer" parent="." instance=ExtResource("1_46lrs")]
+on_hit_ball = Array[ExtResource("2_atnhs")]([ExtResource("3_my7su")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outer"]
+shape = SubResource("CircleShape2D_nnd5b")
+debug_color = Color(0.956863, 0.262745, 0.211765, 0.419608)
