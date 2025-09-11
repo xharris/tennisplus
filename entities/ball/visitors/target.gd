@@ -1,8 +1,6 @@
 extends BallVisitor
 class_name BallTarget
 
-static var _log = Logger.new("ball_target")
-
 @export var random_in_group: StringName
 
 func visit_ball(me: Ball):

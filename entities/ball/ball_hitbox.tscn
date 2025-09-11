@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8ov8dlpct3is"]
+
+[ext_resource type="Script" uid="uid://bxud502sud88m" path="res://entities/ball/ball_hitbox.gd" id="1_vop1l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w5wpn"]
+radius = 8.0
+
+[node name="Hitbox" type="AnimatableBody2D"]
+sync_to_physics = false
+script = ExtResource("1_vop1l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_w5wpn")

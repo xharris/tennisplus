@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cy0xaqlkrhrbc"]
+[gd_scene load_steps=5 format=3 uid="uid://cy0xaqlkrhrbc"]
 
 [ext_resource type="Texture2D" uid="uid://btx4a4he8e33m" path="res://entities/ball/ball.png" id="1_61umk"]
 [ext_resource type="Script" uid="uid://coa4cy7ort0t0" path="res://entities/ball/ball.gd" id="1_w5wpn"]
 [ext_resource type="PackedScene" uid="uid://xhufob6bfkcm" path="res://entities/ball/ball_physics.tscn" id="3_we1t7"]
-[ext_resource type="Script" uid="uid://bxud502sud88m" path="res://entities/ball/ball_hitbox.gd" id="4_we1t7"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_w5wpn"]
-radius = 8.0
+[ext_resource type="PackedScene" uid="uid://b8ov8dlpct3is" path="res://entities/ball/ball_hitbox.tscn" id="4_we1t7"]
 
 [node name="Ball" type="Node2D"]
 script = ExtResource("1_w5wpn")
@@ -17,9 +14,4 @@ texture = ExtResource("1_61umk")
 [node name="Physics" parent="." node_paths=PackedStringArray("apply_to") instance=ExtResource("3_we1t7")]
 apply_to = NodePath("..")
 
-[node name="Hitbox" type="AnimatableBody2D" parent="."]
-sync_to_physics = false
-script = ExtResource("4_we1t7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CircleShape2D_w5wpn")
+[node name="Hitbox" parent="." instance=ExtResource("4_we1t7")]

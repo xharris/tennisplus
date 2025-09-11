@@ -3,7 +3,6 @@ class_name PaddleHitboxController
 
 var _log = Logger.new("paddle_hitbox_controller")
 
-var on_hit_ball: Array[Visitor]
 var _ignore_body: Dictionary
 
 func swing():
@@ -17,8 +16,6 @@ func swing():
                 _log.debug("hit ball: %s" % h)
                 is_hit = true
                 for v in h.on_hit_ball:
-                    b.accept(v)
-                for v in on_hit_ball:
                     b.accept(v)
             if is_hit:
                 _ignore_body.set(b, true)

@@ -4,6 +4,12 @@ class_name BallPhysics
 
 @export var apply_to: Node2D
 @export var speed_curve: Curve2D
+var speed_scale: float = 1.0:
+    set(v):
+        speed_scale = v
+        if _tween:
+            _tween.set_speed_scale(speed_scale)
+
 var _log = Logger.new("ball_physics")
 var _target: Node2D
 var _position_curve: Curve2D
@@ -31,4 +37,9 @@ func set_target(target: Node2D):
     _tween = create_tween()
     _tween.set_trans(Tween.TRANS_LINEAR)
     _tween.set_ease(Tween.EASE_OUT)
-    _tween.tween_property(self, "_progress", 1, Constants.BALL_PHYSICS_TWEEN_DURATION).from(0)
+    _tween.tween_property(
+        self, 
+        "_progress", 
+        1, 
+        Constants.BALL_PHYSICS_TWEEN_DURATION
+    ).from(0)
