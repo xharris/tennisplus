@@ -12,6 +12,7 @@ var _log = Logger.new("title")
 
 func _ready() -> void:
     play.pressed.connect(play_pressed.emit)
+    _connect_player1.call_deferred()
     
     var view = get_viewport_rect()
     play.grab_focus()
@@ -20,9 +21,14 @@ func _ready() -> void:
     player1.global_position.y = view.position.y - 120
     player_manager.arrange_players()
 
-func _unhandled_input(event: InputEvent) -> void:
-    if event.is_action_pressed("attack"):
-        var control = get_viewport().gui_get_focus_owner()
-        if control is Button:
-            control.button_pressed = true
-            control.pressed.emit()
+func _connect_player1():
+    var player1 = player_manager.get_player1()
+    if not player1:
+        return _log.warn("missing player 1")
+    player1.input.attack.connect(_on_player1_input_attack)
+
+func _on_player1_input_attack() -> void:
+    var control = get_viewport().gui_get_focus_owner()
+    if control is Button:
+        control.button_pressed = true
+        control.pressed.emit()

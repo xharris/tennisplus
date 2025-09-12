@@ -16,8 +16,8 @@ func accept(v: Visitor):
 func _ready() -> void:
     add_to_group(Groups.PADDLE)
     
-    input.swing.connect(_on_input_swing)
-    input.activate_ability.connect(_on_input_activate_ability)
+    input.attack.connect(_hitbox_controller.attack)
+    input.ability.connect(_ability_controller.activate)
     _hitbox_controller.hit.connect(_ability_controller.hit)
     _hitbox_controller.accepted_visitor.connect(accept)
     _ability_controller.accepted_visitor.connect(accept)
@@ -25,12 +25,6 @@ func _ready() -> void:
 
     _ability_controller.abilities = abilities
     _ability_controller.next_ability()
-    
-func _on_input_swing():
-    _hitbox_controller.swing()
-
-func _on_input_activate_ability():
-    _ability_controller.activate()
 
 func _on_health_controller_body_entered(body: Node2D):
     if body is BallHitbox:

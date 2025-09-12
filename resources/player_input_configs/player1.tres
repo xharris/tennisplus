@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="PlayerInputConfig" load_steps=3 format=3 uid="uid://c5ih7ek7wcgor"]
+
+[ext_resource type="Script" uid="uid://dl8ghnwr4frge" path="res://entities/player/player_input_config.gd" id="1_jsin7"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_jsin7"]
+device = -1
+keycode = 90
+unicode = 122
+
+[resource]
+script = ExtResource("1_jsin7")
+attack = Array[InputEvent]([SubResource("InputEventKey_jsin7")])
+ability = Array[InputEvent]([])
+swap = Array[InputEvent]([])
+back = Array[InputEvent]([])
+pause = Array[InputEvent]([])
+up = Array[InputEvent]([])
+down = Array[InputEvent]([])
+left = Array[InputEvent]([])
+right = Array[InputEvent]([])
+metadata/_custom_type_script = "uid://dl8ghnwr4frge"

@@ -3,6 +3,12 @@ class_name PlayerManager
 
 var _log = Logger.new("player_manager")
 
+func get_player1() -> Player:
+    for p: Player in get_tree().get_nodes_in_group(Groups.PLAYER):
+        if p.index == 1:
+            return p
+    return null
+
 ## TODO add enum ArrangeType {Circle, QuarterCircleBottom}
 func arrange_players():
     await get_tree().process_frame

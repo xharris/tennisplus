@@ -11,7 +11,7 @@ var _ignore_body: Dictionary
 func accept(v: Visitor):
     accepted_visitor.emit(v)
 
-func swing():
+func attack():
     var hitboxes = _get_hitboxes()
     var is_hit = false
     for h in hitboxes:
