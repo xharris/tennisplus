@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dh607qldgmjgn"]
 
-[ext_resource type="Script" uid="uid://cgw7qds8e8l5h" path="res://levels/title/title.gd" id="1_vucde"]
-[ext_resource type="PackedScene" uid="uid://bpqew3gmdvmho" path="res://entities/player/player.tscn" id="2_i4hfk"]
+[ext_resource type="Script" uid="uid://cgw7qds8e8l5h" path="res://levels/title_screen/title_screen.gd" id="1_vucde"]
+[ext_resource type="PackedScene" uid="uid://3wjwdtw2sqrn" path="res://entities/player/player_manager.tscn" id="3_ros5a"]
 
-[node name="Title" type="Node2D"]
+[node name="TitleScreen" type="Node2D"]
 script = ExtResource("1_vucde")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -41,4 +41,4 @@ focus_neighbor_left = NodePath("../Play")
 focus_neighbor_right = NodePath("../Play")
 text = "PRACTICE"
 
-[node name="Player1" parent="." instance=ExtResource("2_i4hfk")]
+[node name="PlayerManager" parent="." instance=ExtResource("3_ros5a")]

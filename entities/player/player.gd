@@ -10,3 +10,6 @@ static var SCENE = preload("res://entities/player/player.tscn")
 static func create() -> Player:
     var me = SCENE.instantiate() as Player
     return me
+
+func _ready() -> void:
+    add_to_group(Groups.PLAYER)

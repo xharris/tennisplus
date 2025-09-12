@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="tennisplus"
-run/main_scene="uid://dh607qldgmjgn"
+run/main_scene="uid://8ffchtq6v2ih"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
