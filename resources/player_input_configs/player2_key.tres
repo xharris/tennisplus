@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="PlayerInputConfig" load_steps=5 format=3 uid="uid://dyb465c5owkrr"]
+
+[ext_resource type="Script" uid="uid://dl8ghnwr4frge" path="res://entities/player/player_input_config.gd" id="1_gcuuk"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_qi8rj"]
+device = -1
+keycode = 78
+unicode = 110
+
+[sub_resource type="InputEventKey" id="InputEventKey_0pvq6"]
+device = -1
+keycode = 66
+unicode = 98
+
+[sub_resource type="InputEventKey" id="InputEventKey_15e1p"]
+device = -1
+keycode = 77
+unicode = 109
+
+[resource]
+script = ExtResource("1_gcuuk")
+name = "player2"
+attack = SubResource("InputEventKey_0pvq6")
+ability = SubResource("InputEventKey_qi8rj")
+swap = SubResource("InputEventKey_15e1p")
+metadata/_custom_type_script = "uid://dl8ghnwr4frge"

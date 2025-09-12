@@ -1,15 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://8ffchtq6v2ih"]
+[gd_scene load_steps=3 format=3 uid="uid://8ffchtq6v2ih"]
 
 [ext_resource type="Script" uid="uid://b6nbgdsbwpqgr" path="res://game/game.gd" id="1_l1rk1"]
 [ext_resource type="PackedScene" uid="uid://dh607qldgmjgn" path="res://levels/title_screen/title_screen.tscn" id="2_vasa2"]
-[ext_resource type="PackedScene" uid="uid://bpqew3gmdvmho" path="res://entities/player/player.tscn" id="3_h7iqs"]
-[ext_resource type="Resource" uid="uid://c5ih7ek7wcgor" path="res://resources/player_input_configs/player1.tres" id="4_4fuuu"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_l1rk1")
 
 [node name="TitleScreen" parent="." node_paths=PackedStringArray("player1") instance=ExtResource("2_vasa2")]
-player1 = NodePath("../Player")
-
-[node name="Player" parent="." instance=ExtResource("3_h7iqs")]
-input_config = ExtResource("4_4fuuu")
+player1 = NodePath("")

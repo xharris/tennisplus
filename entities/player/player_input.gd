@@ -2,6 +2,8 @@ extends InputController
 class_name PlayerInput
 
 @export var config: PlayerInputConfig
+## TODO
+@export var device: int
 
 func _unhandled_input(event: InputEvent) -> void:
     if not config:

@@ -1,7 +1,26 @@
 extends Node2D
 class_name PlayerManager
 
+signal player_join_requested(input_config: PlayerInputConfig)
+
+## TODO replace with player_settings_configs when settings are saved/loaded
+@export var player_input_configs: Array[PlayerInputConfig]
+
 var _log = Logger.new("player_manager")
+
+func _unhandled_input(event: InputEvent) -> void:
+    for c in player_input_configs:
+        # check if player already exists
+        var skip = false
+        for p: Player in get_tree().get_nodes_in_group(Groups.PLAYER):
+            if p.input.config.name == c.name:
+                skip = true
+                break
+        if skip:
+            continue
+        # is a player trying to join?
+        if c.is_pressed(event, c.attack):
+            player_join_requested.emit(c)
 
 func get_player1() -> Player:
     for p: Player in get_tree().get_nodes_in_group(Groups.PLAYER):
@@ -10,18 +29,23 @@ func get_player1() -> Player:
     return null
 
 ## TODO add enum ArrangeType {Circle, QuarterCircleBottom}
-func arrange_players():
+func arrange_players_circle(angle_range: RangeInt):
     await get_tree().process_frame
     var view = get_viewport_rect()
     var view_center = view.get_center()
+    var radius = min(view.size.x, view.size.y) / 3
     var count = get_tree().get_node_count_in_group(Groups.PLAYER)
-    var i = 0
+    var i = 1
     _log.info("player count: %d" % count)
     for p: Player in get_tree().get_nodes_in_group(Groups.PLAYER):
-        var angle = deg_to_rad(lerp(90, 90 + 360, i / count))
-        var target_position = view_center + \
-            (Vector2.from_angle(angle) * min(view.size.x, view.size.y) / 3)
-        _log.info("move %s to %s" % [p, target_position])
+        var angle = deg_to_rad(angle_range.average())
+        if count > 1:
+            angle = deg_to_rad(
+                lerp(angle_range.get_min(), angle_range.get_max(), i / count)
+            )
+        var target_position = view_center + Vector2.from_angle(angle) * radius
+        
+        _log.info("move %s, angle=%d position=%s" % [p, rad_to_deg(angle), target_position])
         var t = p.create_tween()
         t.set_ease(Tween.EASE_OUT)
         t.set_trans(Tween.TRANS_BACK)

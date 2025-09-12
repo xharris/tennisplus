@@ -1,25 +1,23 @@
 extends Resource
 class_name PlayerInputConfig
 
-@export var attack: Array[InputEvent]
-@export var ability: Array[InputEvent]
-@export var swap: Array[InputEvent]
-@export var back: Array[InputEvent]
-@export var pause: Array[InputEvent]
-@export var up: Array[InputEvent]
-@export var down: Array[InputEvent]
-@export var left: Array[InputEvent]
-@export var right: Array[InputEvent]
+@export var name: String
+@export var attack: InputEvent
+@export var ability: InputEvent
+@export var swap: InputEvent
+@export var back: InputEvent
+@export var pause: InputEvent
+@export var up: InputEvent
+@export var down: InputEvent
+@export var left: InputEvent
+@export var right: InputEvent
 
-func is_match(events: Array[InputEvent], event: InputEvent) -> bool:
-    for e in events:
-        if event.is_match(e):
-            return true
-    return false
+func is_match(event: InputEvent, matches: InputEvent) -> bool:
+    return event.is_match(matches)
 
-func is_pressed(event: InputEvent, match_events: Array[InputEvent]) -> bool:
-    return is_match(match_events, event) and event.is_pressed()
+func is_pressed(event: InputEvent, matches: InputEvent) -> bool:
+    return event.is_pressed() and not event.echo and is_match(event, matches)
 
-func emit_if_match(event: InputEvent, events: Array[InputEvent], sig: Signal):
-    if is_match(events, event):
+func emit_if_match(event: InputEvent, matches: InputEvent, sig: Signal):
+    if is_match(event, matches):
         sig.emit()

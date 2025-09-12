@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RangeInt" load_steps=2 format=3 uid="uid://o6qjvykapboi"]
+
+[ext_resource type="Script" uid="uid://cv6m8wtrwqp7k" path="res://resources/range_int.gd" id="1_p23i6"]
+
+[resource]
+script = ExtResource("1_p23i6")
+_min = 135
+_max = 45
+metadata/_custom_type_script = "uid://cv6m8wtrwqp7k"
