@@ -10,11 +10,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_vwoo2"]
 radius = 60.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fk22a"]
-radius = 100.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_nnd5b"]
 radius = 130.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fk22a"]
+radius = 100.0
 
 [node name="Default" type="Node2D"]
 
@@ -25,16 +25,16 @@ on_hit_ball = Array[ExtResource("2_atnhs")]([ExtResource("3_my7su"), ExtResource
 shape = SubResource("CircleShape2D_vwoo2")
 debug_color = Color(0.298039, 0.686275, 0.313726, 0.419608)
 
-[node name="Middle" parent="." instance=ExtResource("1_46lrs")]
-on_hit_ball = Array[ExtResource("2_atnhs")]([ExtResource("3_my7su"), ExtResource("5_a2gor")])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Middle"]
-shape = SubResource("CircleShape2D_fk22a")
-debug_color = Color(1, 0.921569, 0.231373, 0.419608)
-
 [node name="Outer" parent="." instance=ExtResource("1_46lrs")]
 on_hit_ball = Array[ExtResource("2_atnhs")]([ExtResource("3_my7su"), ExtResource("4_vwoo2")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Outer"]
 shape = SubResource("CircleShape2D_nnd5b")
 debug_color = Color(0.956863, 0.262745, 0.211765, 0.419608)
+
+[node name="Middle" parent="." instance=ExtResource("1_46lrs")]
+on_hit_ball = Array[ExtResource("2_atnhs")]([ExtResource("3_my7su"), ExtResource("5_a2gor")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Middle"]
+shape = SubResource("CircleShape2D_fk22a")
+debug_color = Color(1, 0.921569, 0.231373, 0.419608)

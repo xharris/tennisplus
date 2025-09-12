@@ -15,6 +15,10 @@ run/main_scene="uid://450pjljv18g8"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+
 [input]
 
 paddle_swing={

@@ -1,14 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://450pjljv18g8"]
+[gd_scene load_steps=7 format=3 uid="uid://450pjljv18g8"]
 
 [ext_resource type="Script" uid="uid://5bxiypk11n6v" path="res://entities/game/game.gd" id="1_j054j"]
 [ext_resource type="PackedScene" uid="uid://cy0xaqlkrhrbc" path="res://entities/ball/ball.tscn" id="1_uqg41"]
 [ext_resource type="PackedScene" uid="uid://dghq8stxw47f2" path="res://entities/paddle/paddle.tscn" id="2_5xshk"]
-
-[sub_resource type="Curve2D" id="Curve2D_j054j"]
-_data = {
-"points": PackedVector2Array(-221.445, 121.352, 221.445, -121.352, -2, -1, -266.62, -120.466, 266.62, 120.466, 488, -1)
-}
-point_count = 2
+[ext_resource type="Script" uid="uid://kqfyrs15oaxb" path="res://entities/ability/ability.gd" id="4_bbd0t"]
+[ext_resource type="PackedScene" uid="uid://blxtga72rw2vg" path="res://entities/input/player_input.tscn" id="4_vjvwb"]
+[ext_resource type="Resource" uid="uid://cnd4g0mn3lx2e" path="res://resources/abilities/basic/basic.tres" id="5_ikuqk"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_j054j")
@@ -16,12 +13,16 @@ script = ExtResource("1_j054j")
 [node name="Ball" parent="." instance=ExtResource("1_uqg41")]
 position = Vector2(157, 141)
 
-[node name="PaddleL" parent="." instance=ExtResource("2_5xshk")]
+[node name="PaddleLeft" parent="." node_paths=PackedStringArray("input") instance=ExtResource("2_5xshk")]
 position = Vector2(158, 391)
+abilities = Array[ExtResource("4_bbd0t")]([ExtResource("5_ikuqk")])
+input = NodePath("PlayerInput")
 
-[node name="PaddleR" parent="." instance=ExtResource("2_5xshk")]
+[node name="PlayerInput" parent="PaddleLeft" instance=ExtResource("4_vjvwb")]
+
+[node name="PaddleRight" parent="." node_paths=PackedStringArray("input") instance=ExtResource("2_5xshk")]
 position = Vector2(987, 412)
+abilities = Array[ExtResource("4_bbd0t")]([ExtResource("5_ikuqk")])
+input = NodePath("PlayerInput")
 
-[node name="Path2D" type="Path2D" parent="."]
-position = Vector2(3, 4)
-curve = SubResource("Curve2D_j054j")
+[node name="PlayerInput" parent="PaddleRight" instance=ExtResource("4_vjvwb")]

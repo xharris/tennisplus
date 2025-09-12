@@ -9,7 +9,7 @@ var speed_scale: float = 1.0:
         speed_scale = v
         if _tween:
             _tween.set_speed_scale(speed_scale)
-var control_point_distance: Constants.RangeInt = Constants.BALL_PHYSICS_CONTROL_POINT_DISTANCE
+var control_point_distance: RangeInt = Constants.BALL_PHYSICS_CONTROL_POINT_DISTANCE
 
 var _log = Logger.new("ball_physics")
 var _target: Node2D
@@ -26,9 +26,7 @@ func _draw() -> void:
     draw_circle(_debug_control_point, 10, Color.GREEN)
 
 func _physics_process(delta: float) -> void:
-    if _tween and _progress < 1 and _position_curve:
-        _tween.custom_step(delta)
-        apply_to.global_position = _position_curve.sample(0, _progress)
+    if _tween:
         queue_redraw()
 
 func get_target() -> Node2D:
@@ -60,9 +58,9 @@ func set_target(target: Node2D):
     _tween = create_tween()
     _tween.set_trans(Tween.TRANS_LINEAR)
     _tween.set_ease(Tween.EASE_OUT)
-    _tween.tween_property(
-        self, 
-        "_progress", 
-        1, 
+    _tween.tween_method(
+        func(p):
+            apply_to.global_position = _position_curve.sample(0, p),
+        0.0, 1.0,
         Constants.BALL_PHYSICS_TWEEN_DURATION
-    ).from(0)
+    )

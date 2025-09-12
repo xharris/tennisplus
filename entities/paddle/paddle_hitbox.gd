@@ -1,7 +1,9 @@
 extends Area2D
 class_name PaddleHitbox
 
-@export var on_hit_ball: Array[BallVisitor]
+signal accepted_visitor(v: Visitor)
+
+@export var on_hit_ball: Array[Visitor]
 ## [code]true[/code]: will not trigger overlapping PaddleHitbox
 @export var stop_propagation: bool = true
 ## On hit, hitboxes of the same [code]hitbox_group[/code] cannot
@@ -15,6 +17,9 @@ class_name PaddleHitbox
 var _log = Logger.new("paddle_hitbox")
 var _entered_bodies: Dictionary
 var disabled: bool = false
+
+func accept(v: Visitor):
+    accepted_visitor.emit(v)
 
 func _ready() -> void:
     add_to_group(Groups.PADDLE_HITBOX)
@@ -32,3 +37,8 @@ func get_entered_bodies() -> Array[Node2D]:
     var out: Array[Node2D]
     out.assign(_entered_bodies.values())
     return out
+
+func hit(node: Node2D):
+    if node is BallHitbox:
+        for v in on_hit_ball:
+            node.accept(v)

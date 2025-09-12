@@ -1,9 +1,15 @@
 extends Node2D
 class_name PaddleHitboxController
 
+signal accepted_visitor(v: Visitor)
+signal hit(target: Node2D)
+
 var _log = Logger.new("paddle_hitbox_controller")
 
 var _ignore_body: Dictionary
+
+func accept(v: Visitor):
+    accepted_visitor.emit(v)
 
 func swing():
     var hitboxes = _get_hitboxes()
@@ -12,20 +18,16 @@ func swing():
         for b in h.get_entered_bodies():
             if _ignore_body.has(b):
                 continue
-            if b is BallHitbox:
-                _log.debug("hit ball: %s" % h)
+            if b is Node2D:
+                _log.debug("hit: %s" % h)
+                hit.emit(b)
+                h.hit(b)
                 is_hit = true
-                for v in h.on_hit_ball:
-                    b.accept(v)
             if is_hit:
                 _ignore_body.set(b, true)
         # stop processing hitboxes
         if is_hit and h.stop_propagation:
             break
-    # ignore body until it exits all of them
-    for h in hitboxes:
-        if not h.body_exited.is_connected(_on_hitbox_body_exited):
-            h.body_exited.connect(_on_hitbox_body_exited)
 
 func _on_hitbox_body_exited(body: Node2D):
     if _ignore_body.has(body):
@@ -41,4 +43,17 @@ func _get_hitboxes() -> Array[PaddleHitbox]:
     for h: PaddleHitbox in get_tree().get_nodes_in_group(Groups.PADDLE_HITBOX):
         if is_ancestor_of(h):
             hitboxes.append(h)
+    # ignore body until it exits all of them
+    for h in hitboxes:
+        if not h.accepted_visitor.is_connected(accept):
+            h.accepted_visitor.connect(accept)
+        if not h.body_exited.is_connected(_on_hitbox_body_exited):
+            h.body_exited.connect(_on_hitbox_body_exited)
     return hitboxes
+
+func set_hitbox(node: Node2D):
+    for c in get_children():
+        remove_child(c)
+        c.queue_free()
+    add_child(node)
+    _get_hitboxes()

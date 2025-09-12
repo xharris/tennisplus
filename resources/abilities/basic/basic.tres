@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://cnd4g0mn3lx2e"]
+
+[ext_resource type="Script" uid="uid://boxv8r0ghnp21" path="res://resources/visitor.gd" id="1_sbe6e"]
+[ext_resource type="Script" uid="uid://kqfyrs15oaxb" path="res://entities/ability/ability.gd" id="2_8ujpo"]
+[ext_resource type="Resource" uid="uid://de8mfdd80p6gy" path="res://resources/abilities/basic/set_basic_paddle_hitbox.tres" id="2_cv25m"]
+[ext_resource type="Resource" uid="uid://cdr56dtnig3kb" path="res://resources/abilities/basic/set_ball_damage_1.tres" id="3_iyecu"]
+
+[resource]
+script = ExtResource("2_8ujpo")
+passive = true
+on_activate = Array[ExtResource("1_sbe6e")]([ExtResource("2_cv25m")])
+on_hit_ball = Array[ExtResource("1_sbe6e")]([ExtResource("3_iyecu")])
+metadata/_custom_type_script = "uid://kqfyrs15oaxb"

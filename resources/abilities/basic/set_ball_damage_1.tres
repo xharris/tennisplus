@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BallOnHitHealth" load_steps=4 format=3 uid="uid://cdr56dtnig3kb"]
+
+[ext_resource type="Script" uid="uid://cv13i4sv041es" path="res://entities/ball/visitors/on_hit_health.gd" id="1_tvv5v"]
+[ext_resource type="Script" uid="uid://boxv8r0ghnp21" path="res://resources/visitor.gd" id="2_lqh68"]
+[ext_resource type="Resource" uid="uid://vu7xmjm2js2q" path="res://resources/health_visitors/lose_1_health.tres" id="3_lqh68"]
+
+[resource]
+script = ExtResource("1_tvv5v")
+visitors = Array[ExtResource("2_lqh68")]([ExtResource("3_lqh68")])
+metadata/_custom_type_script = "uid://cv13i4sv041es"

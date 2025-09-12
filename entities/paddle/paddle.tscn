@@ -1,16 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://dghq8stxw47f2"]
 
 [ext_resource type="Script" uid="uid://c4gbleewti277" path="res://entities/paddle/paddle.gd" id="1_8l56v"]
-[ext_resource type="Script" uid="uid://1er4pw6hd8yo" path="res://entities/paddle/paddle_input.gd" id="1_d472v"]
 [ext_resource type="PackedScene" uid="uid://blhuoy8yjxty3" path="res://entities/paddle/paddle_hitbox_contoller.tscn" id="3_8l56v"]
-[ext_resource type="PackedScene" uid="uid://x88a7460y3x3" path="res://resources/paddle_hitboxes/default.tscn" id="4_akf0g"]
+[ext_resource type="PackedScene" uid="uid://cu5xx18rkgnol" path="res://entities/health/health_controller.tscn" id="4_akf0g"]
+[ext_resource type="PackedScene" uid="uid://d4nrff0rnv8n7" path="res://entities/ability/ability_controller.tscn" id="5_wxl44"]
 
 [node name="Paddle" type="Node2D"]
 script = ExtResource("1_8l56v")
 
-[node name="Input" type="Node2D" parent="."]
-script = ExtResource("1_d472v")
-
 [node name="HitboxContoller" parent="." instance=ExtResource("3_8l56v")]
 
-[node name="Default" parent="HitboxContoller" instance=ExtResource("4_akf0g")]
+[node name="AbilityController" parent="." instance=ExtResource("5_wxl44")]
+
+[node name="Health" parent="." instance=ExtResource("4_akf0g")]
