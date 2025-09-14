@@ -1,6 +1,7 @@
 extends Resource
 class_name Ability
 
+@export var name: String
 ## number of ball hits until ability ends (including activation hit)[br]
 ## [br]
 ## default: [1, 1]

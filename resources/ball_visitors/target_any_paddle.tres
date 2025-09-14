@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BallTarget" load_steps=2 format=3 uid="uid://cbqljtm6u5idx"]
+
+[ext_resource type="Script" uid="uid://bk263x4npd36r" path="res://entities/ball/visitors/target.gd" id="1_xs45t"]
+
+[resource]
+script = ExtResource("1_xs45t")
+random_in_group = &"paddle"
+allow_repeat_target = true
+metadata/_custom_type_script = "uid://bk263x4npd36r"

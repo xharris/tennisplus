@@ -9,10 +9,11 @@ var speed_scale: float = 1.0:
         speed_scale = v
         if _tween:
             _tween.set_speed_scale(speed_scale)
-var control_point_distance: RangeInt = Constants.BALL_PHYSICS_CONTROL_POINT_DISTANCE
+var curve_distance: RangeInt = Constants.BALL_PHYSICS_CONTROL_POINT_DISTANCE
 
 var _log = Logger.new("ball_physics")
 var _target: Node2D
+var _last_target: Node2D
 var _position_curve: Curve2D
 var _progress: float = 0
 var _tween: Tween
@@ -25,34 +26,41 @@ func _draw() -> void:
     draw_circle(_debug_midpoint, 10, Color.RED)
     draw_circle(_debug_control_point, 10, Color.GREEN)
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
     if _tween:
         queue_redraw()
+    if _position_curve and _target:
+        # maintain ball target path
+        _position_curve.set_point_position(1, _target.global_position)
 
 func get_target() -> Node2D:
     return _target
 
 func set_target(target: Node2D):
-    _log.debug("set target: %s" % target)
+    _log.info("set target: %s" % target)
     _target = target
+    if _last_target and target == _last_target:
+        _log.info("ignore repeat target")
+        return
     var target_position = target.global_position
     var midpoint = (target_position + global_position) / 2
+    _debug_midpoint = midpoint
     # get tangent to direction
     var direction_to = global_position.direction_to(target_position)
     var angle_to = global_position.angle_to_point(target_position)
     var control_angle = angle_to - \
         deg_to_rad(90 + Constants.BALL_PHYSICS_CONTROL_POINT_ANGLE_OFFSET.rand())
     _log.debug("control_angle: %d" % rad_to_deg(control_angle))
-    ## TODO add 180deg if control_point is offscreen
+    ## TODO add 180deg if control_point is offscreen?
     var control_point = midpoint + \
-        (Vector2.from_angle(control_angle) * control_point_distance.rand())
-    _debug_midpoint = midpoint
+        (Vector2.from_angle(control_angle) * curve_distance.rand())
     _debug_control_point = control_point
-    # create curve between ball and target
+    # create curve
     _position_curve = Curve2D.new()
     _position_curve.add_point(global_position)
-    _position_curve.set_point_out(0, control_point - global_position)
     _position_curve.add_point(target_position)
+    # create curve between ball and target
+    _position_curve.set_point_out(0, control_point - global_position)
     _position_curve.set_point_in(1, control_point - target_position)
     # tween on path
     _tween = create_tween()
@@ -64,3 +72,7 @@ func set_target(target: Node2D):
         0.0, 1.0,
         Constants.BALL_PHYSICS_TWEEN_DURATION
     )
+    _tween.finished.connect(_on_tween_finished)
+
+func _on_tween_finished():
+    _target = null

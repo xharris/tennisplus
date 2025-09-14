@@ -15,6 +15,10 @@ run/main_scene="uid://8ffchtq6v2ih"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Events="*res://resources/events.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")

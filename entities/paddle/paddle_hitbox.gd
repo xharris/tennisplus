@@ -27,6 +27,7 @@ func _ready() -> void:
     body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body: Node2D):
+    _log.info("entered: %s" % body)
     _entered_bodies[body] = body
 
 func _on_body_exited(body: Node2D):

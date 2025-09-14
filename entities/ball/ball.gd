@@ -1,6 +1,11 @@
 extends Node2D
 class_name Ball
 
+static var SCENE = preload("res://entities/ball/ball.tscn")
+
+static func create() -> Ball:
+    return SCENE.instantiate() as Ball
+
 @onready var physics: BallPhysics = $Physics
 @onready var hitbox: BallHitbox = $Hitbox
 

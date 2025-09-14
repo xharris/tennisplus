@@ -1,13 +1,13 @@
 extends Node2D
 class_name PlayerManager
 
-signal player_join_requested(input_config: PlayerInputConfig)
+signal player_joined(player: Player)
 
 ## TODO replace with player_settings_configs when settings are saved/loaded
 @export var player_input_configs: Array[PlayerInputConfig]
 
 var _log = Logger.new("player_manager")
-
+    
 func _unhandled_input(event: InputEvent) -> void:
     for c in player_input_configs:
         # check if player already exists
@@ -20,7 +20,16 @@ func _unhandled_input(event: InputEvent) -> void:
             continue
         # is a player trying to join?
         if c.is_pressed(event, c.attack):
-            player_join_requested.emit(c)
+            _log.info("player wants to join: %s" % [c.name])
+            var view = get_viewport_rect()
+            # add new player
+            var new_player = Player.create()
+            new_player.input_config = c
+            # move player to top middle off-screen
+            new_player.global_position.x = view.size.x / 2
+            new_player.global_position.y = view.position.y - 120
+            new_player.name = c.name
+            player_joined.emit(new_player)
 
 func get_player1() -> Player:
     for p: Player in get_tree().get_nodes_in_group(Groups.PLAYER):

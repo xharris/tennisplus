@@ -1,36 +1,53 @@
 extends Node2D
 class_name TitleScreen
 
+static var SCENE = preload("res://levels/title_screen/title_screen.tscn")
+
+static func create() -> TitleScreen:
+    return SCENE.instantiate()
+
 signal play_pressed
+signal practice_pressed
+signal player_created(p: Player)
 
 @onready var play: Button = %Play
 @onready var practice: Button = %Practice
 @onready var player_manager: PlayerManager = $PlayerManager
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
 
 var _log = Logger.new("title")
 @export var arrange_angles: RangeInt = RangeInt.new(180 + 45, 45)
 
 func _ready() -> void:
-    play.pressed.connect(play_pressed.emit)
-    player_manager.player_join_requested.connect(_on_player_join_requested)
+    player_manager.player_joined.connect(_on_player_joined)
+    play.pressed.connect(_on_play_pressed)
+    practice.pressed.connect(_on_practice_pressed)
     _connect_player1.call_deferred()
+    visibility_changed.connect(_on_visibility_changed)
     
     play.grab_focus()
     player_manager.arrange_players_circle(arrange_angles)
-
-func _on_player_join_requested(input_config: PlayerInputConfig):
-    _log.info("player join requested: %s" % [input_config.name])
-    var view = get_viewport_rect()
-    # add new player
-    var new_player = Player.create()
-    new_player.input_config = input_config
-    # move player to top middle off-screen
-    new_player.global_position.x = view.size.x / 2
-    new_player.global_position.y = view.position.y - 120
-    new_player.name = input_config.name
-    add_child(new_player)
     _connect_player1()
+
+func _on_visibility_changed():
+    canvas_layer.visible = visible
+
+func _on_player_joined(p: Player):
     player_manager.arrange_players_circle(arrange_angles)
+    _connect_player1()
+
+func _on_play_pressed():
+    if _get_player_count() <= 1:
+        return _log.info("not enough players to play")
+    play_pressed.emit()
+
+func _on_practice_pressed():
+    if _get_player_count() <= 0:
+        return _log.info("not enough players to practice")
+    practice_pressed.emit()
+
+func _get_player_count() -> int:
+    return get_tree().get_node_count_in_group(Groups.PLAYER)
 
 func _connect_player1():
     var player1 = player_manager.get_player1()

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BallCurveDistance" load_steps=4 format=3 uid="uid://ccllkq2sk38ny"]
+
+[ext_resource type="Script" uid="uid://c4o5b1t5ydfxx" path="res://entities/ball/visitors/curve_distance.gd" id="1_6177a"]
+[ext_resource type="Script" uid="uid://cv6m8wtrwqp7k" path="res://resources/range_int.gd" id="1_bqs58"]
+
+[sub_resource type="Resource" id="Resource_pd6fm"]
+script = ExtResource("1_bqs58")
+_min = 0
+_max = 0
+metadata/_custom_type_script = "uid://cv6m8wtrwqp7k"
+
+[resource]
+script = ExtResource("1_6177a")
+curve_distance = SubResource("Resource_pd6fm")
+metadata/_custom_type_script = "uid://c4o5b1t5ydfxx"

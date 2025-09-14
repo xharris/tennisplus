@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://8ffchtq6v2ih"]
+[gd_scene load_steps=6 format=3 uid="uid://8ffchtq6v2ih"]
 
 [ext_resource type="Script" uid="uid://b6nbgdsbwpqgr" path="res://game/game.gd" id="1_l1rk1"]
 [ext_resource type="PackedScene" uid="uid://dh607qldgmjgn" path="res://levels/title_screen/title_screen.tscn" id="2_vasa2"]
+[ext_resource type="PackedScene" uid="uid://cxuypsqvtqsjd" path="res://levels/practice/practice.tscn" id="3_h7iqs"]
+[ext_resource type="Script" uid="uid://boxv8r0ghnp21" path="res://resources/visitor.gd" id="4_dxrkv"]
+[ext_resource type="Resource" uid="uid://dnsce50mrw7cc" path="res://resources/ball_visitors/target_random_paddle.tres" id="5_dakft"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_l1rk1")
 
-[node name="TitleScreen" parent="." node_paths=PackedStringArray("player1") instance=ExtResource("2_vasa2")]
-player1 = NodePath("")
+[node name="TitleScreen" parent="." instance=ExtResource("2_vasa2")]
+
+[node name="Practice" parent="." instance=ExtResource("3_h7iqs")]
+visible = false
+on_ball_created = Array[ExtResource("4_dxrkv")]([ExtResource("5_dakft")])

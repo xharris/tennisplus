@@ -6,6 +6,7 @@ static var _player_count = 0
 
 static func create() -> Player:
     var me = SCENE.instantiate() as Player
+    Events.player_created.emit(me)
     return me
     
 @onready var paddle: Paddle = $Paddle

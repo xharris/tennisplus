@@ -7,7 +7,11 @@ var _log = Logger.new("paddle")
 @onready var _health_controller: HealthController = $Health
 
 @export var abilities: Array[Ability]
-@export var input: InputController
+@export var input: InputController:
+    set(v):
+        input = v
+        if is_inside_tree():
+            _connect_exports()
 
 func accept(v: Visitor):
     if v is PaddleVisitor:
@@ -16,8 +20,7 @@ func accept(v: Visitor):
 func _ready() -> void:
     add_to_group(Groups.PADDLE)
     
-    input.attack.connect(_hitbox_controller.attack)
-    input.ability.connect(_ability_controller.activate)
+    _connect_exports()
     _hitbox_controller.hit.connect(_ability_controller.hit)
     _hitbox_controller.accepted_visitor.connect(accept)
     _ability_controller.accepted_visitor.connect(accept)
@@ -29,3 +32,9 @@ func _ready() -> void:
 func _on_health_controller_body_entered(body: Node2D):
     if body is BallHitbox:
         body.hit(_health_controller)
+
+func _connect_exports():
+    if not input:
+        return
+    input.attack.connect(_hitbox_controller.attack)
+    input.ability.connect(_ability_controller.activate)
