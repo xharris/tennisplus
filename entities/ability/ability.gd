@@ -14,9 +14,4 @@ class_name Ability
 @export var passive: bool = true
 @export var on_activate: Array[Visitor]
 @export var on_hit_ball: Array[Visitor]
-
-func all_visitors() -> Array[Visitor]:
-    var out: Array[Visitor]
-    out.append_array(on_activate)
-    out.append_array(on_hit_ball)
-    return out
+@export var on_take_damage: Array[Visitor]

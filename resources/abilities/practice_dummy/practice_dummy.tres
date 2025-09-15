@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://ds6rnon0tkm04"]
+
+[ext_resource type="Script" uid="uid://boxv8r0ghnp21" path="res://resources/visitor.gd" id="1_evfrh"]
+[ext_resource type="Resource" uid="uid://ih6vohpl8ki0" path="res://resources/abilities/practice_dummy/set_practice_dummy_hitbox.tres" id="2_f4tml"]
+[ext_resource type="Script" uid="uid://kqfyrs15oaxb" path="res://entities/ability/ability.gd" id="2_rsrer"]
+[ext_resource type="Resource" uid="uid://xtb1asroyxb8" path="res://resources/health_visitors/invincible.tres" id="3_f4tml"]
+
+[resource]
+script = ExtResource("2_rsrer")
+name = "practice_dummy"
+passive = true
+on_activate = Array[ExtResource("1_evfrh")]([ExtResource("2_f4tml"), ExtResource("3_f4tml")])
+on_hit_ball = Array[ExtResource("1_evfrh")]([])
+on_take_damage = Array[ExtResource("1_evfrh")]([])
+metadata/_custom_type_script = "uid://kqfyrs15oaxb"

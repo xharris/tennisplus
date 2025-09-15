@@ -28,6 +28,7 @@ func _init() -> void:
 func _ready() -> void:
     add_to_group(Groups.PLAYER)
     input.config = input_config
+    paddle.name = "Player%dPaddle" % index
 
 func _exit_tree() -> void:
     _player_count -= 1

@@ -40,13 +40,18 @@ func activate():
     for v in _activated_ability.on_activate:
         accept(v)
 
-func hit(node: Node2D):
+func hit(element: Node):
     if _activated_ability:
-        if node is BallHitbox:
+        if element is BallHitbox:
             _log.info("hit: %s" % _activated_ability.name)
             for v in _activated_ability.on_hit_ball:
-                node.accept(v)
+                element.accept(v)
             _hits_left -= 1
             # out of ability activations
             if _hits_left <= 0:
                 next_ability()
+
+func take_damage(element: Node):
+    if _activated_ability:
+        for v in _activated_ability.on_take_damage:
+            element.accept(v)

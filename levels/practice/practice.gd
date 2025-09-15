@@ -27,7 +27,8 @@ func _on_visibility_changed():
         var view = get_viewport_rect()
         var practice_dummy = PRACTICE_DUMMY.instantiate() as Node2D
         practice_dummy.add_to_group(Groups.PRACTICE_DUMMY)
-        practice_dummy.global_position = view.get_center()
+        practice_dummy.global_position.x = view.get_center().x
+        practice_dummy.global_position.y = view.position.y + (view.size.y / 4)
         add_child(practice_dummy)
         # spawn a ball
         var ball = Ball.create()

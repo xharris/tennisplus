@@ -13,6 +13,8 @@ signal accepted_visitor(v: Visitor)
 ## Empty string counts as a group
 @export var hitbox_group: StringName
 @export var reset_group_on_body_exit: bool
+## will auto-hit any body that enters
+@export var auto_hit: bool
 
 var _log = Logger.new("paddle_hitbox")
 var _entered_bodies: Dictionary
@@ -29,17 +31,17 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D):
     _log.info("entered: %s" % body)
     _entered_bodies[body] = body
+    if auto_hit:
+        _log.info("auto hit")
+        hit(body)
 
 func _on_body_exited(body: Node2D):
     _entered_bodies.erase(body)   
-    
-## returns [code]true[/code] if something is hit
+
 func get_entered_bodies() -> Array[Node2D]:
     var out: Array[Node2D]
     out.assign(_entered_bodies.values())
     return out
 
-func hit(node: Node2D):
-    if node is BallHitbox:
-        for v in on_hit_ball:
-            node.accept(v)
+func hit(element: Node2D):
+    Visitor.visit_any(element, on_hit_ball)

@@ -33,15 +33,12 @@ func _process(delta: float) -> void:
         # maintain ball target path
         _position_curve.set_point_position(1, _target.global_position)
 
-func get_target() -> Node2D:
-    return _target
+func get_last_target() -> Node2D:
+    return _last_target
 
 func set_target(target: Node2D):
-    _log.info("set target: %s" % target)
+    _log.info("set target: %s -> %s" % [_last_target, target])
     _target = target
-    if _last_target and target == _last_target:
-        _log.info("ignore repeat target")
-        return
     var target_position = target.global_position
     var midpoint = (target_position + global_position) / 2
     _debug_midpoint = midpoint
@@ -75,4 +72,5 @@ func set_target(target: Node2D):
     _tween.finished.connect(_on_tween_finished)
 
 func _on_tween_finished():
+    _last_target = _target
     _target = null

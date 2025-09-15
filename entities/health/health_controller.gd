@@ -5,9 +5,14 @@ signal body_entered(node: Node2D)
 
 @onready var _area2d: Area2D = $Area2D
 
-var _current: int = Constants.HEALTH_MAX
+var _current: int = Constants.HEALTH_MAX:
+    set(v):
+        if v < _current and _invincible:
+            return
+        _current = v
 var _max: int = Constants.HEALTH_MAX
 var _bodies_entered: Dictionary
+var _invincible: bool = false
 
 func accept(v: Visitor):
     if v is HealthVisitor:
