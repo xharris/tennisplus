@@ -10,8 +10,10 @@ class_name Ability
         if ball_hits == null:
             return Constants.ABILITY_BALL_HITS
         return ball_hits
+## not added to ability queue
+@export var passive: bool = false
 ## [code]true[/code] if ability does not require activation
-@export var passive: bool = true
+@export var activate_immediately: bool = true
 @export var on_activate: Array[Visitor]
 @export var on_hit_ball: Array[Visitor]
 @export var on_take_damage: Array[Visitor]

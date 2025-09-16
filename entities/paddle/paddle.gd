@@ -24,6 +24,7 @@ func _ready() -> void:
     _hitbox_controller.hit.connect(_ability_controller.hit)
     _hitbox_controller.accepted_visitor.connect(accept)
     _ability_controller.accepted_visitor.connect(accept)
+    #_ability_controller.activated.connect(_on_ability_activated)
     _health_controller.body_entered.connect(_on_health_controller_body_entered)
 
     _ability_controller.abilities = abilities

@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Events="*res://resources/events.gd"
+PlayerManager="*res://entities/player/player_manager.gd"
+SceneTreeUtil="*res://resources/scene_tree_util.gd"
 
 [editor_plugins]
 

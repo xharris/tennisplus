@@ -16,7 +16,7 @@ signal accepted_visitor(v: Visitor)
 ## will auto-hit any body that enters
 @export var auto_hit: bool
 
-var _log = Logger.new("paddle_hitbox")
+var _log = Logger.new("paddle_hitbox")#, Logger.Level.DEBUG)
 var _entered_bodies: Dictionary
 var disabled: bool = false
 
@@ -29,10 +29,10 @@ func _ready() -> void:
     body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body: Node2D):
-    _log.info("entered: %s" % body)
+    _log.debug("entered: %s" % body)
     _entered_bodies[body] = body
     if auto_hit:
-        _log.info("auto hit")
+        _log.debug("auto hit")
         hit(body)
 
 func _on_body_exited(body: Node2D):

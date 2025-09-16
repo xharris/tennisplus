@@ -1,11 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dh607qldgmjgn"]
+[gd_scene load_steps=3 format=3 uid="uid://dh607qldgmjgn"]
 
 [ext_resource type="Script" uid="uid://cgw7qds8e8l5h" path="res://levels/title_screen/title_screen.gd" id="1_vucde"]
 [ext_resource type="Resource" uid="uid://o6qjvykapboi" path="res://levels/title_screen/title_screen_arrange_angles.tres" id="2_ndbk7"]
-[ext_resource type="PackedScene" uid="uid://3wjwdtw2sqrn" path="res://entities/player/player_manager.tscn" id="3_ros5a"]
-[ext_resource type="Script" uid="uid://dl8ghnwr4frge" path="res://entities/player/player_input_config.gd" id="3_ypach"]
-[ext_resource type="Resource" uid="uid://c5ih7ek7wcgor" path="res://resources/player_input_configs/player1_key.tres" id="4_ndbk7"]
-[ext_resource type="Resource" uid="uid://dyb465c5owkrr" path="res://resources/player_input_configs/player2_key.tres" id="5_gw2jj"]
 
 [node name="TitleScreen" type="Node2D"]
 script = ExtResource("1_vucde")
@@ -45,6 +41,3 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../Play")
 focus_neighbor_right = NodePath("../Play")
 text = "PRACTICE"
-
-[node name="PlayerManager" parent="." instance=ExtResource("3_ros5a")]
-player_input_configs = Array[ExtResource("3_ypach")]([ExtResource("4_ndbk7"), ExtResource("5_gw2jj")])

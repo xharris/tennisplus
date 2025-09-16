@@ -1,13 +1,15 @@
 extends Node2D
-class_name PlayerManager
 
-signal player_joined(player: Player)
+signal player_joined(p: Player)
 
 ## TODO replace with player_settings_configs when settings are saved/loaded
-@export var player_input_configs: Array[PlayerInputConfig]
+var player_input_configs: Array[PlayerInputConfig] = [
+    preload("res://resources/player_input_configs/player1_key.tres"),
+    preload("res://resources/player_input_configs/player2_key.tres")
+]
 
 var _log = Logger.new("player_manager")
-    
+
 func _unhandled_input(event: InputEvent) -> void:
     for c in player_input_configs:
         # check if player already exists
@@ -29,6 +31,7 @@ func _unhandled_input(event: InputEvent) -> void:
             new_player.global_position.x = view.size.x / 2
             new_player.global_position.y = view.position.y - 120
             new_player.name = c.name
+            add_child(new_player)
             player_joined.emit(new_player)
 
 func get_player1() -> Player:

@@ -8,7 +8,8 @@
 [resource]
 script = ExtResource("2_8ujpo")
 name = "basic"
-passive = true
+passive = false
+activate_immediately = true
 on_activate = Array[ExtResource("1_sbe6e")]([ExtResource("2_cv25m")])
 on_hit_ball = Array[ExtResource("1_sbe6e")]([ExtResource("3_iyecu")])
 on_take_damage = Array[ExtResource("1_sbe6e")]([])

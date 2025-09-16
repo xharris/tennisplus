@@ -4,11 +4,11 @@ class_name Player
 static var SCENE = preload("res://entities/player/player.tscn")
 static var _player_count = 0
 
+## NOTE automatically added to Game node
 static func create() -> Player:
     var me = SCENE.instantiate() as Player
-    Events.player_created.emit(me)
     return me
-    
+
 @onready var paddle: Paddle = $Paddle
 @onready var input: PlayerInput = $PlayerInput
 

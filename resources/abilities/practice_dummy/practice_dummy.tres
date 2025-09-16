@@ -8,7 +8,8 @@
 [resource]
 script = ExtResource("2_rsrer")
 name = "practice_dummy"
-passive = true
+passive = false
+activate_immediately = true
 on_activate = Array[ExtResource("1_evfrh")]([ExtResource("2_f4tml"), ExtResource("3_f4tml")])
 on_hit_ball = Array[ExtResource("1_evfrh")]([])
 on_take_damage = Array[ExtResource("1_evfrh")]([])

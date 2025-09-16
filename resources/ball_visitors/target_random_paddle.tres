@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_8psq5")
 random_in_group = &"paddle"
+allow_repeat_target = false
 metadata/_custom_type_script = "uid://bk263x4npd36r"

@@ -38,6 +38,8 @@ func get_last_target() -> Node2D:
 
 func set_target(target: Node2D):
     _log.info("set target: %s -> %s" % [_last_target, target])
+    if _tween and _tween.is_running():
+        _on_tween_finished()
     _target = target
     var target_position = target.global_position
     var midpoint = (target_position + global_position) / 2

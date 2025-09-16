@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://ddixg1sl0dshh"]
+
+[ext_resource type="Script" uid="uid://boxv8r0ghnp21" path="res://resources/visitor.gd" id="1_i74iq"]
+[ext_resource type="Resource" uid="uid://yqnex3abrwc7" path="res://resources/ball_visitors/limit_1.tres" id="2_kcax0"]
+[ext_resource type="Script" uid="uid://kqfyrs15oaxb" path="res://entities/ability/ability.gd" id="2_svs4q"]
+[ext_resource type="Resource" uid="uid://ctawut8ro67dt" path="res://resources/ball_visitors/center_all.tres" id="3_kcax0"]
+
+[resource]
+script = ExtResource("2_svs4q")
+name = "practice_player"
+passive = false
+activate_immediately = true
+on_activate = Array[ExtResource("1_i74iq")]([])
+on_hit_ball = Array[ExtResource("1_i74iq")]([])
+on_take_damage = Array[ExtResource("1_i74iq")]([ExtResource("2_kcax0"), ExtResource("3_kcax0")])
+metadata/_custom_type_script = "uid://kqfyrs15oaxb"

@@ -12,6 +12,5 @@ func accept(v: Visitor):
     accepted_visitor.emit(v)
 
 func hit(body: Node2D):
-    for v in on_hit:
-        if body is HealthController:
-            body.accept(v)
+    if body is HealthController:
+        Visitor.visit_any(body, on_hit)

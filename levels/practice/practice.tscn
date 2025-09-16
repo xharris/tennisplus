@@ -1,13 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxuypsqvtqsjd"]
+[gd_scene load_steps=7 format=3 uid="uid://cxuypsqvtqsjd"]
 
 [ext_resource type="Script" uid="uid://ctiiwudubo3q0" path="res://levels/practice/practice.gd" id="1_ryacq"]
-[ext_resource type="PackedScene" uid="uid://3wjwdtw2sqrn" path="res://entities/player/player_manager.tscn" id="2_cbk4j"]
 [ext_resource type="Script" uid="uid://boxv8r0ghnp21" path="res://resources/visitor.gd" id="2_h3qnt"]
 [ext_resource type="Resource" uid="uid://ccllkq2sk38ny" path="res://resources/ball_visitors/straight_curve.tres" id="3_v75ov"]
 [ext_resource type="Resource" uid="uid://cbqljtm6u5idx" path="res://resources/ball_visitors/target_any_paddle.tres" id="4_h3qnt"]
+[ext_resource type="Script" uid="uid://kqfyrs15oaxb" path="res://entities/ability/ability.gd" id="5_v75ov"]
+[ext_resource type="Resource" uid="uid://ddixg1sl0dshh" path="res://resources/abilities/practice_player/practice_player.tres" id="6_j33gh"]
 
 [node name="Practice" type="Node2D"]
 script = ExtResource("1_ryacq")
 on_ball_created = Array[ExtResource("2_h3qnt")]([ExtResource("3_v75ov"), ExtResource("4_h3qnt")])
-
-[node name="PlayerManager" parent="." instance=ExtResource("2_cbk4j")]
+add_player_abilities = Array[ExtResource("5_v75ov")]([ExtResource("6_j33gh")])

@@ -1,3 +1,3 @@
 extends Node
 
-signal player_created(p: Player)
+signal add_game_child(node: Node2D)
