@@ -16,4 +16,4 @@ class_name Ability
 @export var activate_immediately: bool = true
 @export var on_activate: Array[Visitor]
 @export var on_hit_ball: Array[Visitor]
-@export var on_take_damage: Array[Visitor]
+@export var on_hit_by_ball: Array[Visitor]

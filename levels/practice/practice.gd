@@ -15,6 +15,11 @@ var _log = Logger.new("practice")
 
 func _ready() -> void:
     visibility_changed.connect(_on_visibility_changed)
+    BallManager.ball_created.connect(_on_ball_created)
+
+func _on_ball_created(ball: Ball):
+    if visible:
+        Visitor.visit_any(ball, on_ball_created)
 
 func _on_visibility_changed():
     if visible:
@@ -35,10 +40,7 @@ func _on_visibility_changed():
         practice_dummy.global_position.y = view.position.y + (view.size.y / 4)
         add_child(practice_dummy)
         # spawn a ball
-        var ball = Ball.create()
-        ball.global_position = view.get_center()
-        add_child(ball)
-        Visitor.visit_any(ball, on_ball_created)
+        BallManager.create_ball()
     else:
         for b: Ball in get_tree().get_nodes_in_group(Groups.BALL):
             b.queue_free()

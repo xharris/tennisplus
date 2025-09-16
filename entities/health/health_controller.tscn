@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cu5xx18rkgnol"]
+[gd_scene load_steps=4 format=3 uid="uid://cu5xx18rkgnol"]
 
 [ext_resource type="Script" uid="uid://25j4ika2o8ap" path="res://entities/health/health_controller.gd" id="1_uxdrn"]
+[ext_resource type="Script" uid="uid://dds5gb43it5ha" path="res://entities/area2d_enter_once/area_2d_enter_once.gd" id="2_ycnjq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uxdrn"]
 radius = 30.0
@@ -8,7 +9,9 @@ radius = 30.0
 [node name="Health" type="Node2D"]
 script = ExtResource("1_uxdrn")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2DEnterOnce" type="Area2D" parent="."]
+script = ExtResource("2_ycnjq")
+metadata/_custom_type_script = "uid://dds5gb43it5ha"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DEnterOnce"]
 shape = SubResource("CircleShape2D_uxdrn")

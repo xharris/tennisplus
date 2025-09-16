@@ -19,6 +19,9 @@ var _hits_left: int = 0
 func accept(v: Visitor):
     accepted_visitor.emit(v)
 
+func set_log_prefix(prefix: String):
+    _log.set_prefix(prefix)
+
 func _get_passive_abilities() -> Array[Ability]:
     return abilities.filter(func(a:Ability): return a.passive)
 
@@ -50,18 +53,25 @@ func activate():
 func hit(element: Node):
     if element is BallHitbox:
         for a in _get_passive_abilities():
-            _log.info("hit: %s" % a.name)
+            _log.debug("hit ball: %s" % a.name)
             Visitor.visit_any(element, a.on_hit_ball)
         if _activated_ability:
-            _log.info("hit: %s" % _activated_ability.name)
+            _log.debug("hit ball: %s" % _activated_ability.name)
             Visitor.visit_any(element, _activated_ability.on_hit_ball)
             _hits_left -= 1
             # out of ability activations
             if _hits_left <= 0:
                 next_ability()
 
-func take_damage(element: Node):
-    if _activated_ability:
+func hit_by(element: Node):
+    if element is BallHitbox:
         for a in _get_passive_abilities():
-            Visitor.visit_any(element, a.on_take_damage)
-        Visitor.visit_any(element, _activated_ability.on_take_damage)
+            _log.debug("hit by ball: %s" % a.name)
+            Visitor.visit_any(element, a.on_hit_by_ball)
+        if _activated_ability:
+            _log.debug("hit by ball: %s" % _activated_ability.name)
+            Visitor.visit_any(element, _activated_ability.on_hit_by_ball)
+
+## NOTE not needed yet
+func take_damage(_amount: int):
+    pass

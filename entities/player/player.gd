@@ -28,7 +28,11 @@ func _init() -> void:
 func _ready() -> void:
     add_to_group(Groups.PLAYER)
     input.config = input_config
-    paddle.name = "Player%dPaddle" % index
+    set_log_prefix("player%d" % index)
 
 func _exit_tree() -> void:
     _player_count -= 1
+
+func set_log_prefix(prefix: String):
+    paddle.set_log_prefix(prefix)
+    

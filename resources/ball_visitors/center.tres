@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="BallPositionAll" load_steps=5 format=3 uid="uid://ctawut8ro67dt"]
+[gd_resource type="Resource" script_class="BallPosition" load_steps=5 format=3 uid="uid://ctawut8ro67dt"]
 
-[ext_resource type="Script" uid="uid://d3otgg7l0q334" path="res://entities/ball/visitors/position_all.gd" id="1_qkpip"]
+[ext_resource type="Script" uid="uid://d3otgg7l0q334" path="res://entities/ball/visitors/position.gd" id="1_qkpip"]
 [ext_resource type="Script" uid="uid://baqoe186nc46k" path="res://resources/range_ratio.gd" id="2_ybfu4"]
 
 [sub_resource type="Resource" id="Resource_uuwtv"]

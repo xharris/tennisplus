@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="BallDestroy" load_steps=2 format=3 uid="uid://cb5hto2ysjaft"]
+
+[ext_resource type="Script" uid="uid://5r3ufqe6jy0r" path="res://entities/ball/visitors/destroy.gd" id="1_7vckw"]
+
+[resource]
+script = ExtResource("1_7vckw")
+metadata/_custom_type_script = "uid://5r3ufqe6jy0r"

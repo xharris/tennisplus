@@ -11,7 +11,7 @@ var speed_scale: float = 1.0:
             _tween.set_speed_scale(speed_scale)
 var curve_distance: RangeInt = Constants.BALL_PHYSICS_CONTROL_POINT_DISTANCE
 
-var _log = Logger.new("ball_physics")
+var _log = Logger.new("ball_physics")#, Logger.Level.DEBUG)
 var _target: Node2D
 var _last_target: Node2D
 var _position_curve: Curve2D
@@ -37,10 +37,12 @@ func get_last_target() -> Node2D:
     return _last_target
 
 func set_target(target: Node2D):
-    _log.info("set target: %s -> %s" % [_last_target, target])
     if _tween and _tween.is_running():
         _on_tween_finished()
+    _log.info("set target: %s -> %s" % [_last_target, target])
     _target = target
+    if _target and not _last_target:
+        _last_target = _target
     var target_position = target.global_position
     var midpoint = (target_position + global_position) / 2
     _debug_midpoint = midpoint
@@ -74,5 +76,6 @@ func set_target(target: Node2D):
     _tween.finished.connect(_on_tween_finished)
 
 func _on_tween_finished():
+    _log.debug("tween finished")
     _last_target = _target
     _target = null

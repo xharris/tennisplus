@@ -1,8 +1,9 @@
 [gd_resource type="Resource" script_class="BallInstanceCount" load_steps=2 format=3 uid="uid://yqnex3abrwc7"]
 
-[ext_resource type="Script" uid="uid://cthmnb8jopm4x" path="res://entities/ball/visitors/instance_count.gd" id="1_a3aep"]
+[ext_resource type="Script" uid="uid://cthmnb8jopm4x" path="res://entities/ball/visitors/instance_count.gd" id="1_di636"]
 
 [resource]
-script = ExtResource("1_a3aep")
+script = ExtResource("1_di636")
+operation = 0
 count = 1
 metadata/_custom_type_script = "uid://cthmnb8jopm4x"

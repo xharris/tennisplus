@@ -8,3 +8,9 @@ class_name PracticeDummy
 func _ready() -> void:
     add_to_group(Groups.PRACTICE_DUMMY)
     paddle.name = "PracticeDummyPaddle"
+    set_log_prefix("practice_dummy")
+
+func set_log_prefix(prefix: String):
+    paddle.set_log_prefix(prefix)
+    ability_controller.set_log_prefix(prefix)
+    health.set_log_prefix(prefix)

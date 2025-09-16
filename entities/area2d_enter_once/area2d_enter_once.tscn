@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bahsb8rfb6vmx"]
+
+[ext_resource type="Script" uid="uid://dds5gb43it5ha" path="res://entities/area2d_enter_once/area_2d_enter_once.gd" id="1_eo0a6"]
+
+[node name="Area2dEnterOnce" type="Area2D"]
+script = ExtResource("1_eo0a6")

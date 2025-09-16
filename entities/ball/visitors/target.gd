@@ -13,10 +13,8 @@ func visit_ball(me: Ball):
     if not allow_repeat_target:
         var last_target = me.physics.get_last_target()
         targets = targets.filter(func(t: Node2D): return t != last_target)
-    else:
-        _log.debug("allow repeat target")
     if targets.is_empty():
-        _log.debug("no targets found")
+        _log.info("no targets found")
         return
     var target: Node2D = targets.pick_random()
     me.physics.set_target(target)

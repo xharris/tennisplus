@@ -4,12 +4,15 @@ class_name PaddleHitboxController
 signal accepted_visitor(v: Visitor)
 signal hit(target: Node2D)
 
-var _log = Logger.new("paddle_hitbox_controller")
+var _log = Logger.new("paddle_hitbox_controller")#, Logger.Level.DEBUG)
 
 var _ignore_body: Dictionary
 
 func accept(v: Visitor):
     accepted_visitor.emit(v)
+
+func set_log_prefix(prefix: String):
+    _log.set_prefix(prefix)
 
 func attack():
     var hitboxes = _get_hitboxes()
