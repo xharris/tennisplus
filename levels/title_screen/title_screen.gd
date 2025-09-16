@@ -18,21 +18,25 @@ var _log = Logger.new("title")
 
 func _ready() -> void:
     PlayerManager.player_joined.connect(_on_player_joined)
+    PlayerManager.player1_set.connect(_on_player1_set)
     play.pressed.connect(_on_play_pressed)
     practice.pressed.connect(_on_practice_pressed)
-    _connect_player1.call_deferred()
     visibility_changed.connect(_on_visibility_changed)
     
     play.grab_focus()
-    PlayerManager.arrange_players_circle(arrange_angles)
-    _connect_player1()
+
+func _on_player1_set(player: Player):
+    _log.info("connected player 1")
+    if not player.input.attack.is_connected(_on_player1_input_attack):
+        player.input.attack.connect(_on_player1_input_attack)
 
 func _on_visibility_changed():
     canvas_layer.visible = visible
+    if visible:
+        play.grab_focus()
 
 func _on_player_joined(p: Player):
     PlayerManager.arrange_players_circle(arrange_angles)
-    _connect_player1()
 
 func _on_play_pressed():
     if _get_player_count() <= 1:
@@ -46,14 +50,6 @@ func _on_practice_pressed():
 
 func _get_player_count() -> int:
     return get_tree().get_node_count_in_group(Groups.PLAYER)
-
-func _connect_player1():
-    var player1 = PlayerManager.get_player1()
-    if not player1:
-        return _log.warn("missing player 1")
-    _log.info("connected player 1")
-    if not player1.input.attack.is_connected(_on_player1_input_attack):
-        player1.input.attack.connect(_on_player1_input_attack)
 
 func _on_player1_input_attack() -> void:
     var control = get_viewport().gui_get_focus_owner()

@@ -6,17 +6,19 @@ extends Node2D
 var _log = Logger.new("game")
 
 func _ready() -> void:
-    Events.add_game_child.connect(_on_add_game_child)
     title_screen.play_pressed.connect(_on_play_pressed)
-    title_screen.practice_pressed.connect(_on_practice_pressed)
-    
-func _on_add_game_child(node: Node2D):
-    add_child(node)
+    title_screen.practice_pressed.connect(_show_practice)
+    practice.exit.connect(_show_title_screen)
 
 func _on_play_pressed():
     _log.info("play")
 
-func _on_practice_pressed():
-    _log.info("practice")
+func _show_title_screen():
+    _log.info("show title screen")
+    practice.hide()
+    title_screen.show()
+    
+func _show_practice():
+    _log.info("show practice")
     title_screen.hide()
     practice.show()

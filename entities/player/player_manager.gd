@@ -1,6 +1,7 @@
 extends Node2D
 
 signal player_joined(p: Player)
+signal player1_set(p: Player)
 
 ## TODO replace with player_settings_configs when settings are saved/loaded
 var player_input_configs: Array[PlayerInputConfig] = [
@@ -9,6 +10,7 @@ var player_input_configs: Array[PlayerInputConfig] = [
 ]
 
 var _log = Logger.new("player_manager")
+var _player1: Player
 
 func _unhandled_input(event: InputEvent) -> void:
     for c in player_input_configs:
@@ -33,12 +35,13 @@ func _unhandled_input(event: InputEvent) -> void:
             new_player.name = c.name
             add_child(new_player)
             player_joined.emit(new_player)
+            # is this a new player1?
+            if not _player1:
+                _player1 = new_player
+                player1_set.emit(_player1)
 
 func get_player1() -> Player:
-    for p: Player in get_tree().get_nodes_in_group(Groups.PLAYER):
-        if p.index == 1:
-            return p
-    return null
+    return _player1
 
 ## TODO add enum ArrangeType {Circle, QuarterCircleBottom}
 func arrange_players_circle(angle_range: RangeInt):

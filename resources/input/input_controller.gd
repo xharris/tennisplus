@@ -3,3 +3,4 @@ class_name InputController
 
 signal attack
 signal ability
+signal back

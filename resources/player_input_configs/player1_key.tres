@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlayerInputConfig" load_steps=5 format=3 uid="uid://c5ih7ek7wcgor"]
+[gd_resource type="Resource" script_class="PlayerInputConfig" load_steps=6 format=3 uid="uid://c5ih7ek7wcgor"]
 
 [ext_resource type="Script" uid="uid://dl8ghnwr4frge" path="res://entities/player/player_input_config.gd" id="1_4v4wf"]
 
@@ -12,6 +12,10 @@ device = -1
 keycode = 90
 unicode = 122
 
+[sub_resource type="InputEventKey" id="InputEventKey_4v4wf"]
+device = -1
+keycode = 4194305
+
 [sub_resource type="InputEventKey" id="InputEventKey_4wy21"]
 device = -1
 keycode = 67
@@ -23,4 +27,5 @@ name = "player1"
 attack = SubResource("InputEventKey_jsin7")
 ability = SubResource("InputEventKey_3dcp7")
 swap = SubResource("InputEventKey_4wy21")
+back = SubResource("InputEventKey_4v4wf")
 metadata/_custom_type_script = "uid://dl8ghnwr4frge"

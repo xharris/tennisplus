@@ -12,3 +12,4 @@ func _unhandled_input(event: InputEvent) -> void:
     if event.is_pressed() and not event.is_echo():
         config.emit_if_match(event, config.attack, attack)
         config.emit_if_match(event, config.ability, ability)
+        config.emit_if_match(event, config.back, back)

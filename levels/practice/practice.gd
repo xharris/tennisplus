@@ -16,6 +16,14 @@ var _log = Logger.new("practice")
 func _ready() -> void:
     visibility_changed.connect(_on_visibility_changed)
     BallManager.ball_created.connect(_on_ball_created)
+    PlayerManager.player1_set.connect(_on_player1_set)
+
+func _on_player1_set(player: Player):
+    player.input.back.connect(_on_player_input_back)
+
+func _on_player_input_back():
+    if visible:
+        exit.emit()
 
 func _on_ball_created(ball: Ball):
     if visible:
