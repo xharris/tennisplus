@@ -2,7 +2,7 @@ extends Node2D
 
 signal accepted_visitor(v: Visitor)
 
-var _log = Logger.new("level_manager", Logger.Level.DEBUG)
+var _log = Logger.new("level_manager")#, Logger.Level.DEBUG)
 var _prev_config: LevelConfig
 var _current_config: LevelConfig
 

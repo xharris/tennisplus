@@ -6,7 +6,7 @@ signal activated(ability: Ability)
 
 @export var abilities: Array[Ability]
 
-var _log = Logger.new("ability_controller")#, Logger.Level.DEBUG)
+var _log = Logger.new("ability_controller", Logger.Level.DEBUG)
 var _order: Order
 var _current: Ability:
     set(v):
@@ -65,6 +65,7 @@ func hit(element: Node):
 
 func hit_by(element: Node):
     if element is BallHitbox:
+        element.hit(self)
         for a in _get_passive_abilities():
             _log.debug("hit by ball: %s" % a.name)
             Visitor.visit_any(element, a.on_hit_by_ball)
@@ -75,3 +76,9 @@ func hit_by(element: Node):
 ## NOTE not needed yet
 func take_damage(_amount: int):
     pass
+
+func has_ability(ability_name: String) -> bool:
+    for a: Ability in abilities:
+        if a.name == ability_name:
+            return true
+    return false

@@ -29,6 +29,11 @@ func _ready() -> void:
     add_to_group(Groups.PLAYER)
     input.config = input_config
     set_log_prefix("player%d" % index)
+    
+    paddle.health_controller.died.connect(_on_died)
+
+func _on_died():
+    destroy()
 
 func _exit_tree() -> void:
     _player_count -= 1
@@ -36,3 +41,8 @@ func _exit_tree() -> void:
 func set_log_prefix(prefix: String):
     paddle.set_log_prefix(prefix)
     
+func destroy():
+    var parent = get_parent()
+    if parent:
+        parent.remove_child(self)
+    queue_free()

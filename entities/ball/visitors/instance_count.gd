@@ -1,7 +1,7 @@
 extends BallManagerVisitor
 class_name BallInstanceCount
 
-static var _log = Logger.new("ball_instance_count", Logger.Level.DEBUG)
+static var _log = Logger.new("ball_instance_count")#, Logger.Level.DEBUG)
 
 enum Operation {Gte, Lte}
 

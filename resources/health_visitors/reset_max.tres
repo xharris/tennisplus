@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="HealthMax" load_steps=2 format=3 uid="uid://bmcw7ae6u5lpk"]
+
+[ext_resource type="Script" uid="uid://sfie255n8u4s" path="res://entities/health/visitors/max.gd" id="1_h1di7"]
+
+[resource]
+script = ExtResource("1_h1di7")
+operation = 0
+value = 3
+metadata/_custom_type_script = "uid://sfie255n8u4s"

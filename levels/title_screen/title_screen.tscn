@@ -1,14 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://dh607qldgmjgn"]
+[gd_scene load_steps=7 format=3 uid="uid://dh607qldgmjgn"]
 
 [ext_resource type="Script" uid="uid://cgw7qds8e8l5h" path="res://levels/title_screen/title_screen.gd" id="1_vucde"]
 [ext_resource type="Script" uid="uid://boxv8r0ghnp21" path="res://resources/visitor.gd" id="2_eff74"]
-[ext_resource type="Resource" uid="uid://o6qjvykapboi" path="res://levels/title_screen/title_screen_arrange_angles.tres" id="2_ndbk7"]
+[ext_resource type="Script" uid="uid://cv6m8wtrwqp7k" path="res://resources/range_int.gd" id="2_ypach"]
 [ext_resource type="Resource" uid="uid://bshgy226j2li4" path="res://resources/level_manager_visitors/go_to_pvp.tres" id="3_h0kaw"]
 [ext_resource type="Resource" uid="uid://tfaf1c1rwvvm" path="res://resources/level_manager_visitors/go_to_practice.tres" id="4_me0mb"]
 
+[sub_resource type="Resource" id="Resource_ndbk7"]
+script = ExtResource("2_ypach")
+_min = 45
+_max = 135
+metadata/_custom_type_script = "uid://cv6m8wtrwqp7k"
+
 [node name="TitleScreen" type="Node2D"]
 script = ExtResource("1_vucde")
-arrange_angles = ExtResource("2_ndbk7")
+arrange_angles = SubResource("Resource_ndbk7")
 on_play_pressed = Array[ExtResource("2_eff74")]([ExtResource("3_h0kaw")])
 on_practice_pressed = Array[ExtResource("2_eff74")]([ExtResource("4_me0mb")])
 

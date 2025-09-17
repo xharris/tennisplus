@@ -9,7 +9,7 @@ var player_input_configs: Array[PlayerInputConfig] = [
     preload("res://resources/player_input_configs/player2_key.tres")
 ]
 
-var _log = Logger.new("player_manager")
+var _log = Logger.new("player_manager")#, Logger.Level.DEBUG)
 var _player1: Player
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -44,26 +44,35 @@ func get_player1() -> Player:
     return _player1
 
 ## TODO add enum ArrangeType {Circle, QuarterCircleBottom}
-func arrange_players_circle(angle_range: RangeInt):
+func arrange_players(config: PlayerArrangeConfig):
     await get_tree().process_frame
     var view = get_viewport_rect()
     var view_center = view.get_center()
-    var radius = min(view.size.x, view.size.y) / 3
+    var radius = min(view.size.x, view.size.y) * config.radius
     var count = get_tree().get_node_count_in_group(Groups.PLAYER)
-    var i = 1
-    _log.debug("player count: %d" % count)
+    var i: float = 0
+    _log.debug("count: %d, i start: %d" % [count, i])
+    var signals: Array[Signal]
     for p: Player in get_tree().get_nodes_in_group(Groups.PLAYER):
         var weight = 0.5
-        if count > 1:
+        if count > 1 and not config.exclude_max:
+            weight = i / (count - 1) 
+        elif count > 1 and config.exclude_max:
             weight = i / count
         var angle = deg_to_rad(
-            lerp(angle_range.get_min(), angle_range.get_max(), weight)
+            lerp(
+                config.angle_range.get_min(), 
+                config.angle_range.get_max(), 
+                weight
+            )
         )
         var target_position = view_center + Vector2.from_angle(angle) * radius
-        _log.debug("angle_range=[%d, %d]" % angle_range.values())
+        _log.debug("angle_range=[%d, %d]" % config.angle_range.values())
         _log.debug("move %s, weight=%f angle=%d position=%s" % [p, weight, rad_to_deg(angle), target_position])
         var t = p.create_tween()
         t.set_ease(Tween.EASE_OUT)
         t.set_trans(Tween.TRANS_BACK)
         t.tween_property(p, "global_position", target_position, 2)
+        signals.append(t.finished)
         i += 1
+    await Async.all(signals)

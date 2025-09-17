@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://boxv8r0ghnp21" path="res://resources/visitor.gd" id="2_1lh67"]
 [ext_resource type="PackedScene" uid="uid://dh607qldgmjgn" path="res://levels/title_screen/title_screen.tscn" id="3_1lh67"]
 [ext_resource type="Script" uid="uid://d2atqpi2j25a4" path="res://entities/level/level_config.gd" id="3_4bcog"]
-[ext_resource type="Resource" uid="uid://o6qjvykapboi" path="res://levels/title_screen/title_screen_arrange_angles.tres" id="3_kxhbr"]
+[ext_resource type="Resource" uid="uid://rfymgrpq5f5j" path="res://levels/title_screen/title_screen_player_arrange.tres" id="3_kxhbr"]
 
 [resource]
 script = ExtResource("3_4bcog")
@@ -15,6 +15,6 @@ on_exit = Array[ExtResource("2_1lh67")]([])
 on_ball_created = Array[ExtResource("2_1lh67")]([])
 add_player_abilities = Array[ExtResource("1_wflww")]([])
 allow_player_join = true
-player_arrange_angles = ExtResource("3_kxhbr")
+player_arrange = ExtResource("3_kxhbr")
 on_back = Array[ExtResource("2_1lh67")]([])
 metadata/_custom_type_script = "uid://d2atqpi2j25a4"

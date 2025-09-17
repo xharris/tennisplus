@@ -11,7 +11,8 @@ class_name TitleScreen
 
 func _ready() -> void:
     super._ready()
-    PlayerManager.player1_set.connect(_on_player1_set)
+    if not PlayerManager.player1_set.is_connected(_on_player1_set):
+        PlayerManager.player1_set.connect(_on_player1_set)
     play.pressed.connect(_on_play_pressed)
     practice.pressed.connect(_on_practice_pressed)
     
