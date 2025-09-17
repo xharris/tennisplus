@@ -19,3 +19,6 @@ func rand() -> int:
 
 func average() -> int:
     return (_min + _max) / 2
+
+func values() -> Array[int]:
+    return [_min, _max]

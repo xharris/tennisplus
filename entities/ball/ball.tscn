@@ -1,15 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy0xaqlkrhrbc"]
+[gd_scene load_steps=5 format=3 uid="uid://cy0xaqlkrhrbc"]
 
 [ext_resource type="Texture2D" uid="uid://btx4a4he8e33m" path="res://entities/ball/ball.png" id="1_61umk"]
 [ext_resource type="Script" uid="uid://coa4cy7ort0t0" path="res://entities/ball/ball.gd" id="1_w5wpn"]
-[ext_resource type="Script" uid="uid://boxv8r0ghnp21" path="res://resources/visitor.gd" id="2_thfbu"]
-[ext_resource type="Resource" uid="uid://ctawut8ro67dt" path="res://resources/ball_visitors/center.tres" id="3_fcn6e"]
 [ext_resource type="PackedScene" uid="uid://xhufob6bfkcm" path="res://entities/ball/ball_physics.tscn" id="3_we1t7"]
 [ext_resource type="PackedScene" uid="uid://b8ov8dlpct3is" path="res://entities/ball/ball_hitbox.tscn" id="4_we1t7"]
 
 [node name="Ball" type="Node2D"]
 script = ExtResource("1_w5wpn")
-on_create = Array[ExtResource("2_thfbu")]([ExtResource("3_fcn6e")])
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_61umk")

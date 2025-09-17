@@ -21,6 +21,7 @@ Events="*res://resources/events.gd"
 SceneTreeUtil="*res://resources/scene_tree_util.gd"
 PlayerManager="*res://entities/player/player_manager.gd"
 BallManager="*res://entities/ball/ball_manager.gd"
+LevelManager="*res://entities/level/level_manager.gd"
 
 [editor_plugins]
 

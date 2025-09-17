@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelManagerSetLevel" load_steps=3 format=3 uid="uid://tfaf1c1rwvvm"]
+
+[ext_resource type="Resource" uid="uid://dwxcbvbg7bh23" path="res://levels/practice/practice.tres" id="1_35hrs"]
+[ext_resource type="Script" uid="uid://b0d35v6plc3oi" path="res://entities/level/visitors/set_level.gd" id="1_77u3g"]
+
+[resource]
+script = ExtResource("1_77u3g")
+level_config = ExtResource("1_35hrs")
+metadata/_custom_type_script = "uid://b0d35v6plc3oi"

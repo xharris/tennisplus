@@ -73,6 +73,8 @@ When modifying scene scripts, prefer minimal edits: update exported properties, 
 - Small change: to iterate players, modify `PlayerManager` or use `get_tree().get_nodes_in_group(Groups.PLAYER)`; see `levels/practice/practice.gd` for removal of abilities.
 - Adding new autoload: update `project.godot` autoload section and place the script under `resources/` or `entities/`.
 - Adding new GUT tests in the project: 'tests' folder should go in the same directory as the code being tested
+- There is no need to eliminate duplicate numeric ids
+- Do not modify files in the `addons/` folder
 
 # Concrete Examples
 

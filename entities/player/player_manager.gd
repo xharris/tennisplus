@@ -51,16 +51,17 @@ func arrange_players_circle(angle_range: RangeInt):
     var radius = min(view.size.x, view.size.y) / 3
     var count = get_tree().get_node_count_in_group(Groups.PLAYER)
     var i = 1
-    _log.info("player count: %d" % count)
+    _log.debug("player count: %d" % count)
     for p: Player in get_tree().get_nodes_in_group(Groups.PLAYER):
-        var angle = deg_to_rad(angle_range.average())
+        var weight = 0.5
         if count > 1:
-            angle = deg_to_rad(
-                lerp(angle_range.get_min(), angle_range.get_max(), i / count)
-            )
+            weight = i / count
+        var angle = deg_to_rad(
+            lerp(angle_range.get_min(), angle_range.get_max(), weight)
+        )
         var target_position = view_center + Vector2.from_angle(angle) * radius
-        
-        _log.info("move %s, angle=%d position=%s" % [p, rad_to_deg(angle), target_position])
+        _log.debug("angle_range=[%d, %d]" % angle_range.values())
+        _log.debug("move %s, weight=%f angle=%d position=%s" % [p, weight, rad_to_deg(angle), target_position])
         var t = p.create_tween()
         t.set_ease(Tween.EASE_OUT)
         t.set_trans(Tween.TRANS_BACK)

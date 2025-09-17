@@ -1,16 +1,16 @@
-extends Visitor
+extends BallManagerVisitor
 class_name BallInstanceCount
 
-static var _log = Logger.new("ball_instance_count")#, Logger.Level.DEBUG)
+static var _log = Logger.new("ball_instance_count", Logger.Level.DEBUG)
 
 enum Operation {Gte, Lte}
 
 @export var operation: Operation = Operation.Gte
 @export var count: int = 1
 
-func visit():
+func visit_ball_manager(me: BallManager):
     var balls: Array[Ball]
-    balls.assign(SceneTreeUtil.get_tree().get_nodes_in_group(Groups.BALL))
+    balls.assign(me.get_tree().get_nodes_in_group(Groups.BALL))
     var diff = abs(balls.size() - count)
     _log.debug("instances: %d, want: %d" % [balls.size(), count])
     
@@ -21,7 +21,7 @@ func visit():
                 return
             while diff > 0:
                 _log.debug("add")
-                BallManager.create_ball()
+                me.create_ball()
                 diff -= 1
             
         # too many balls

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelManagerSetLevel" load_steps=3 format=3 uid="uid://d1dh1dlamvo5d"]
+
+[ext_resource type="Script" uid="uid://b0d35v6plc3oi" path="res://entities/level/visitors/set_level.gd" id="1_b3ka3"]
+[ext_resource type="Resource" uid="uid://byaqltrnawcpn" path="res://levels/title_screen/title_screen.tres" id="1_p6nsg"]
+
+[resource]
+script = ExtResource("1_b3ka3")
+level_config = ExtResource("1_p6nsg")
+metadata/_custom_type_script = "uid://b0d35v6plc3oi"

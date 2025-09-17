@@ -3,6 +3,8 @@ class_name Ball
 
 static var SCENE = preload("res://entities/ball/ball.tscn")
 
+signal accepted_visitor(v: Visitor)
+
 @onready var physics: BallPhysics = $Physics
 @onready var hitbox: BallHitbox = $Hitbox
 @export var on_create: Array[Visitor]
@@ -16,6 +18,7 @@ func _ready() -> void:
 func accept(v: Visitor):
     if v is BallVisitor:
         v.visit_ball(self)
+    Visitor.emit_accepted(accepted_visitor, [v])
 
 func destroy():
     var parent = get_parent()

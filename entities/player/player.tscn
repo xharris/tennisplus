@@ -3,17 +3,17 @@
 [ext_resource type="Script" uid="uid://difudvxjv6pwf" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="PackedScene" uid="uid://dghq8stxw47f2" path="res://entities/paddle/paddle.tscn" id="2_sglur"]
 [ext_resource type="Script" uid="uid://kqfyrs15oaxb" path="res://entities/ability/ability.gd" id="3_8fjmc"]
-[ext_resource type="PackedScene" uid="uid://cu5xx18rkgnol" path="res://entities/health/health_controller.tscn" id="3_bls4j"]
-[ext_resource type="Resource" uid="uid://cnd4g0mn3lx2e" path="res://resources/abilities/basic/basic.tres" id="4_qiwj3"]
+[ext_resource type="PackedScene" uid="uid://cu5xx18rkgnol" path="res://entities/health/health_controller.tscn" id="4_bls4j"]
+[ext_resource type="Resource" uid="uid://cnd4g0mn3lx2e" path="res://resources/abilities/basic/basic.tres" id="5_qiwj3"]
 [ext_resource type="PackedScene" uid="uid://blxtga72rw2vg" path="res://entities/player/player_input.tscn" id="6_26q78"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_symyc")
 
 [node name="Paddle" parent="." node_paths=PackedStringArray("input") instance=ExtResource("2_sglur")]
-abilities = Array[ExtResource("3_8fjmc")]([ExtResource("4_qiwj3")])
+abilities = Array[ExtResource("3_8fjmc")]([ExtResource("5_qiwj3")])
 input = NodePath("../PlayerInput")
 
-[node name="Health" parent="." instance=ExtResource("3_bls4j")]
+[node name="Health" parent="." instance=ExtResource("4_bls4j")]
 
 [node name="PlayerInput" parent="." instance=ExtResource("6_26q78")]
