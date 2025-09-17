@@ -6,7 +6,11 @@ var _log = Logger.new("paddle")
 @onready var ability_controller: AbilityController = $AbilityController
 @onready var health_controller: HealthController = $Health
 
-@export var abilities: Array[Ability]
+@export var abilities: Array[Ability]:
+    set(v):
+        abilities = v
+        if ability_controller:
+            ability_controller.abilities = abilities
 @export var input: InputController:
     set(v):
         input = v

@@ -11,6 +11,8 @@ var player_input_configs: Array[PlayerInputConfig] = [
 
 var _log = Logger.new("player_manager")#, Logger.Level.DEBUG)
 var _player1: Player
+## enable new players to join
+var player_join_enabled: bool = true
 
 func _unhandled_input(event: InputEvent) -> void:
     for c in player_input_configs:
@@ -23,7 +25,7 @@ func _unhandled_input(event: InputEvent) -> void:
         if skip:
             continue
         # is a player trying to join?
-        if c.is_pressed(event, c.attack):
+        if player_join_enabled and c.is_pressed(event, c.attack):
             _log.info("player wants to join: %s" % [c.name])
             var view = get_viewport_rect()
             # add new player

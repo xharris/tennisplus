@@ -11,7 +11,7 @@ var config: LevelConfig:
         config = v
         if config and config.player_arrange:
             _player_arrange = config.player_arrange
-var _log = Logger.new("level", Logger.Level.DEBUG)
+var _log = Logger.new("level") # , Logger.Level.DEBUG)
 var _player_arrange: PlayerArrangeConfig
 
 func _ready() -> void:
@@ -19,6 +19,8 @@ func _ready() -> void:
     PlayerManager.player_joined.connect(_on_player_joined)
     PlayerManager.player1_set.connect(_on_player1_set)
     BallManager.ball_created.connect(_on_ball_created)
+    
+    PlayerManager.player_join_enabled = config.allow_player_join
     
     var player1 = PlayerManager.get_player1()
     if player1:
@@ -71,6 +73,10 @@ func exit(skip_signal = false):
     _log.info("exit")
     if not skip_signal:
         exited.emit(self)
+    if config.remove_added_abilities_on_exit:
+        for p: Player in get_tree().get_nodes_in_group(Groups.PLAYER):
+            for a in config.add_player_abilities:
+                p.paddle.ability_controller.remove_ability_by_name(a.name)
     Visitor.visit_any(self, config.on_exit)
     var parent = get_parent()
     if parent:

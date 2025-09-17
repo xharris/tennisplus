@@ -6,7 +6,7 @@ signal activated(ability: Ability)
 
 @export var abilities: Array[Ability]
 
-var _log = Logger.new("ability_controller", Logger.Level.DEBUG)
+var _log = Logger.new("ability_controller")#, Logger.Level.DEBUG)
 var _order: Order
 var _current: Ability:
     set(v):
@@ -82,3 +82,7 @@ func has_ability(ability_name: String) -> bool:
         if a.name == ability_name:
             return true
     return false
+    
+func remove_ability_by_name(ability_name: String):
+    abilities = abilities.filter(func(a: Ability):
+        return a.name != ability_name)

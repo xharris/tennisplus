@@ -45,5 +45,9 @@ func enter(config: LevelConfig):
     
 func _on_exit_level(level: Level):
     _log.debug("_on_exit_level called for %s" % [level])
-    if _prev_config:
+    if level.config.clear_prev_config:
+        _prev_config = null
+    if level.config.next_level:
+        enter(level.config.next_level)
+    elif _prev_config:
         enter(_prev_config)

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerArrangeConfig" load_steps=2 format=3 uid="uid://dtjxdr5tnuytt"]
+
+[ext_resource type="Script" uid="uid://dlspmq5woi5qj" path="res://entities/player/player_arrange_config.gd" id="1_611to"]
+
+[resource]
+script = ExtResource("1_611to")
+radius = 0.0
+exclude_max = false
+metadata/_custom_type_script = "uid://dlspmq5woi5qj"

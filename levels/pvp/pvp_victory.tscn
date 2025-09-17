@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjayno6i2ecfd"]
+
+[ext_resource type="Script" uid="uid://jl8fhnv6qjg0" path="res://levels/pvp/pvp_victory.gd" id="1_omtuv"]
+[ext_resource type="Script" uid="uid://boxv8r0ghnp21" path="res://resources/visitor.gd" id="2_5trun"]
+[ext_resource type="Resource" uid="uid://d1dh1dlamvo5d" path="res://resources/level_manager_visitors/go_to_title_screen.tres" id="3_s64yg"]
+
+[node name="PvpVictory" type="Node2D"]
+script = ExtResource("1_omtuv")
+on_any_input = Array[ExtResource("2_5trun")]([ExtResource("3_s64yg")])
+metadata/_custom_type_script = "uid://gktgxnthun6x"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+
+[node name="Winner" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "WINNER!"
+
+[node name="Continue" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Press any button to continue"

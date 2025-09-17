@@ -18,6 +18,8 @@ func is_match(event: InputEvent, matches: InputEvent) -> bool:
 func is_pressed(event: InputEvent, matches: InputEvent) -> bool:
     return event.is_pressed() and not event.is_echo() and is_match(event, matches)
 
-func emit_if_match(event: InputEvent, matches: InputEvent, sig: Signal):
+func emit_if_match(event: InputEvent, matches: InputEvent, sig: Signal) -> bool:
     if is_match(event, matches):
         sig.emit()
+        return true
+    return false

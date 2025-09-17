@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="LevelManagerSetLevel" load_steps=3 format=3 uid="uid://bshgy226j2li4"]
+[gd_resource type="Resource" script_class="LevelManagerSetLevel" load_steps=2 format=3 uid="uid://bshgy226j2li4"]
 
-[ext_resource type="Resource" uid="uid://ddfjcsavckwmn" path="res://levels/pvp/pvp.tres" id="1_ovg6k"]
 [ext_resource type="Script" uid="uid://b0d35v6plc3oi" path="res://entities/level/visitors/set_level.gd" id="2_a2ip6"]
 
 [resource]
 script = ExtResource("2_a2ip6")
-level_config = ExtResource("1_ovg6k")
+level_config = "uid://ddfjcsavckwmn"
 metadata/_custom_type_script = "uid://b0d35v6plc3oi"

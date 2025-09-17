@@ -11,5 +11,7 @@ metadata/_custom_type_script = "uid://cv6m8wtrwqp7k"
 
 [resource]
 script = ExtResource("1_sp5h6")
+radius = 0.3
 angle_range = SubResource("Resource_x1e75")
+exclude_max = false
 metadata/_custom_type_script = "uid://dlspmq5woi5qj"
