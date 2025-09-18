@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://qg7ch28gpmu5"]
+[gd_scene load_steps=7 format=3 uid="uid://qg7ch28gpmu5"]
 
 [ext_resource type="Script" uid="uid://dt2s1s1s78lw2" path="res://entities/character/character_sprite.gd" id="1_mtb35"]
 [ext_resource type="Texture2D" uid="uid://bhn0jo7b520m2" path="res://resources/character_configs/blank/blank.png" id="1_ph8by"]
 [ext_resource type="Texture2D" uid="uid://d81xetfffldh" path="res://resources/character_configs/blank/hand.png" id="2_n40pr"]
 [ext_resource type="Resource" uid="uid://dhphfyc6mqwbu" path="res://resources/character_configs/blank/blank.tres" id="2_o0dk0"]
+[ext_resource type="Resource" uid="uid://qxjclq40sykf" path="res://resources/weapons/sword/sword.tres" id="3_uojkm"]
 [ext_resource type="AnimationLibrary" uid="uid://dbyhi50gc2qbc" path="res://entities/character/character_sprite_animations.res" id="3_w25rh"]
 
 [node name="CharacterSprite" type="Node2D"]
 script = ExtResource("1_mtb35")
 config = ExtResource("2_o0dk0")
+weapon_config = ExtResource("3_uojkm")
 
 [node name="Sprites" type="Node2D" parent="."]
 
@@ -21,10 +23,13 @@ scale = Vector2(3, 3)
 
 [node name="HandL" type="Node2D" parent="Sprites/ArmLOffset/ArmL"]
 position = Vector2(0, 7)
+rotation = 1.5708
 
 [node name="Hand" type="Sprite2D" parent="Sprites/ArmLOffset/ArmL/HandL"]
 texture = ExtResource("2_n40pr")
 hframes = 3
+
+[node name="WeaponL" type="Node2D" parent="Sprites/ArmLOffset/ArmL/HandL"]
 
 [node name="Character" type="Node2D" parent="Sprites"]
 scale = Vector2(5, 5)
@@ -51,6 +56,7 @@ scale = Vector2(3, 3)
 
 [node name="HandR" type="Node2D" parent="Sprites/ArmROffset/ArmR"]
 position = Vector2(0, 7)
+rotation = 1.5708
 
 [node name="Hand" type="Sprite2D" parent="Sprites/ArmROffset/ArmR/HandR"]
 texture = ExtResource("2_n40pr")

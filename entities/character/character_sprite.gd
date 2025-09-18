@@ -13,12 +13,17 @@ class_name CharacterSprite
 @onready var hand_r: Node2D = $Sprites/ArmROffset/ArmR/HandR
 @onready var hand_l_sprite: Sprite2D = $Sprites/ArmLOffset/ArmL/HandL/Hand
 @onready var hand_r_sprite: Sprite2D = $Sprites/ArmROffset/ArmR/HandR/Hand
+@onready var weapon_l: Node2D = $Sprites/ArmLOffset/ArmL/HandL/WeaponL
 
 @export var config: CharacterConfig:
     set(v):
         config = v
         _config_updated()
-        
+@export var weapon_config: WeaponConfig:
+    set(v):
+        weapon_config = v
+        _config_updated()
+
 var _global_position: Vector2
 
 func _ready() -> void:
@@ -33,14 +38,24 @@ func _process(delta: float) -> void:
 func _config_updated():
     if not is_inside_tree():
         return
-    arm_l.position = config.arm_position
-    arm_r.position = config.arm_position * Vector2(-1, 1)
-    hand_l.position.y = config.arm_length
-    hand_r.position.y = config.arm_length
-    if config.body_texture:
-        set_body_texture(config.body_texture)
-    if config.hand_texture:
-        set_hand_texture(config.hand_texture)
+    # character config
+    if config:
+        arm_l.position = config.arm_position
+        arm_r.position = config.arm_position * Vector2(-1, 1)
+        hand_l.position.y = config.arm_length
+        hand_r.position.y = config.arm_length
+        if config.body_texture:
+            set_body_texture(config.body_texture)
+        if config.hand_texture:
+            set_hand_texture(config.hand_texture)
+    # weapon config
+    if weapon_config:
+        for child in weapon_l.get_children():
+            weapon_l.remove_child(child)
+            child.queue_free()
+        if weapon_config.scene:
+            var scene = weapon_config.scene.instantiate()
+            weapon_l.add_child(scene)
 
 func set_hand_texture(tex: Texture2D):
     hand_l_sprite.texture = tex

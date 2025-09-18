@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="WeaponConfig" load_steps=3 format=3 uid="uid://qxjclq40sykf"]
+
+[ext_resource type="Script" uid="uid://dqxipss3m6uis" path="res://entities/weapon/weapon_config.gd" id="1_7kig6"]
+[ext_resource type="PackedScene" uid="uid://dkotr2ml8xpc7" path="res://resources/weapons/sword/sword.tscn" id="1_14lku"]
+
+[resource]
+script = ExtResource("1_7kig6")
+scene = ExtResource("1_14lku")
+metadata/_custom_type_script = "uid://dqxipss3m6uis"
