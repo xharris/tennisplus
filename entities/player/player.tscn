@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpqew3gmdvmho"]
+[gd_scene load_steps=8 format=3 uid="uid://bpqew3gmdvmho"]
 
 [ext_resource type="Script" uid="uid://difudvxjv6pwf" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="PackedScene" uid="uid://dghq8stxw47f2" path="res://entities/paddle/paddle.tscn" id="2_sglur"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cu5xx18rkgnol" path="res://entities/health/health_controller.tscn" id="4_bls4j"]
 [ext_resource type="Resource" uid="uid://cnd4g0mn3lx2e" path="res://resources/abilities/basic/basic.tres" id="5_qiwj3"]
 [ext_resource type="PackedScene" uid="uid://blxtga72rw2vg" path="res://entities/player/player_input.tscn" id="6_26q78"]
+[ext_resource type="PackedScene" uid="uid://qg7ch28gpmu5" path="res://entities/character/character_sprite.tscn" id="7_qiwj3"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_symyc")
@@ -17,3 +18,5 @@ input = NodePath("../PlayerInput")
 [node name="Health" parent="." instance=ExtResource("4_bls4j")]
 
 [node name="PlayerInput" parent="." instance=ExtResource("6_26q78")]
+
+[node name="CharacterSprite" parent="." instance=ExtResource("7_qiwj3")]
