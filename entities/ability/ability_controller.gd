@@ -15,6 +15,9 @@ var _current: Ability:
             activate()
 var _activated_ability: Ability
 var _hits_left: int = 0
+var current_ability: Ability:
+    get:
+        return _current
 
 func accept(v: Visitor):
     accepted_visitor.emit(v)

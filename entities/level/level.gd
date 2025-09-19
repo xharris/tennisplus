@@ -30,7 +30,7 @@ func _ready() -> void:
         _on_player_joined(p)
     if _player_arrange:
         await PlayerManager.arrange_players(_player_arrange)
-        
+    Visitor.visit_any(self, config.on_arrange_finished)
     Visitor.visit_any(self, config.on_enter)
 
 func _on_ball_created(ball: Ball):
@@ -67,6 +67,8 @@ func _on_player_input_back():
 func accept(v: Visitor):
     if v is LevelVisitor:
         v.visit_level(self)
+    for p: Paddle in get_tree().get_nodes_in_group(Groups.PADDLE):
+        p.accept(v)
     accepted_visitor.emit(v)
 
 func exit(skip_signal = false):

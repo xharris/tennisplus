@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PaddleHitboxEnabled" load_steps=2 format=3 uid="uid://b876mwqln6m0p"]
+
+[ext_resource type="Script" uid="uid://byd8bdiburgyj" path="res://entities/paddle/visitors/hitbox_enabled.gd" id="1_mf23w"]
+
+[resource]
+script = ExtResource("1_mf23w")
+enabled = false
+metadata/_custom_type_script = "uid://byd8bdiburgyj"

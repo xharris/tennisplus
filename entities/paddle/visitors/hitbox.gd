@@ -6,4 +6,4 @@ class_name PaddleVisitHitbox
 
 func visit_paddle(me: Paddle):
     var node = scene.instantiate()
-    me._hitbox_controller.set_hitbox(node)
+    me.hitbox_controller.set_hitbox(node)

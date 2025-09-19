@@ -23,8 +23,11 @@ class_name CharacterSprite
     set(v):
         weapon_config = v
         _config_updated()
+var weapon: Weapon
 
+var _log = Logger.new("character_sprite")
 var _global_position: Vector2
+var weapon_animation_names: Array[StringName]
 
 func _ready() -> void:
     _config_updated()
@@ -34,6 +37,11 @@ func _process(delta: float) -> void:
     _global_position = _global_position.lerp(global_position, delta * 18)
     arm_l_offset.global_position = _global_position
     arm_r_offset.global_position = _global_position
+    var view = get_viewport_rect()
+    if global_position.x < view.size.x / 2:
+        sprites.scale.x = abs(sprites.scale.x)
+    else:
+        sprites.scale.x = -abs(sprites.scale.x)
 
 func _config_updated():
     if not is_inside_tree():
@@ -55,8 +63,30 @@ func _config_updated():
             child.queue_free()
         if weapon_config.scene:
             var scene = weapon_config.scene.instantiate()
-            weapon_l.add_child(scene)
+            if scene is not Weapon:
+                _log.warn("weapon scene is not of type Weapon: %s" % [weapon_config.name])
+            else:
+                weapon = scene
+                weapon_l.add_child(scene)
+        if weapon and weapon_config.animations:
+            animation_player.remove_animation_library("weapon")
+            animation_player.add_animation_library("weapon", weapon_config.animations)
+            weapon_animation_names = weapon_config.animations.get_animation_list()
+            _log.info("weapon animations: %s" % weapon_animation_names)
 
+func play_attack_animation():
+    if animation_player.has_animation_library("weapon") and weapon_animation_names.size() > 0:
+        animation_player.stop(true)
+        animation_player.speed_scale = 2.0
+        var animation_name = "weapon/%s" % weapon_animation_names.pick_random() as StringName
+        var reverse = false
+        if weapon_config and weapon_config.can_reverse_animation:
+            reverse = [true, false].pick_random()
+        if reverse:
+            animation_player.play_backwards(animation_name)
+        else:
+            animation_player.play(animation_name)
+        
 func set_hand_texture(tex: Texture2D):
     hand_l_sprite.texture = tex
     hand_r_sprite.texture = tex

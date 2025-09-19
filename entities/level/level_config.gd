@@ -18,5 +18,6 @@ class_name LevelConfig
 ## Allow new local players to join
 @export var allow_player_join: bool = false
 @export var player_arrange: PlayerArrangeConfig
+@export var on_arrange_finished: Array[Visitor]
 @export var on_back: Array[Visitor]
 @export var on_one_player_left: Array[Visitor]

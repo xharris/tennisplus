@@ -11,6 +11,7 @@ static func create() -> Player:
 
 @onready var paddle: Paddle = $Paddle
 @onready var input: PlayerInput = $PlayerInput
+@onready var sprite: CharacterSprite = $CharacterSprite
 
 @export var input_config: PlayerInputConfig:
     set(v):
@@ -31,6 +32,16 @@ func _ready() -> void:
     set_log_prefix("player%d" % index)
     
     paddle.health_controller.died.connect(_on_died)
+    paddle.ability_controller.activated.connect(_on_ability_activated)
+    sprite.weapon.attacked.connect(paddle.hitbox_controller.attack)
+    input.attack.connect(_on_input_attack)
+
+func _on_input_attack():
+    if paddle.hitbox_controller.enabled:
+        sprite.play_attack_animation()
+
+func _on_ability_activated(a: Ability):
+    paddle.hitbox_controller.cooldown = a.attack_cooldown
 
 func _on_died():
     destroy()

@@ -9,8 +9,6 @@ signal accepted_visitor(v: Visitor)
 ## will auto-hit any body that enters
 @export var auto_hit: bool
 
-var disabled: bool = false
-
 func accept(v: Visitor):
     accepted_visitor.emit(v)
 

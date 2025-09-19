@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="LevelConfig" load_steps=14 format=3 uid="uid://dwxcbvbg7bh23"]
+[gd_resource type="Resource" script_class="LevelConfig" load_steps=15 format=3 uid="uid://dwxcbvbg7bh23"]
 
 [ext_resource type="Script" uid="uid://boxv8r0ghnp21" path="res://resources/visitor.gd" id="1_i25mk"]
 [ext_resource type="Script" uid="uid://kqfyrs15oaxb" path="res://entities/ability/ability.gd" id="1_xlvlk"]
 [ext_resource type="Resource" uid="uid://ddixg1sl0dshh" path="res://resources/abilities/practice_player/practice_player.tres" id="2_o1fej"]
 [ext_resource type="Script" uid="uid://d2atqpi2j25a4" path="res://entities/level/level_config.gd" id="2_wu15g"]
+[ext_resource type="Resource" uid="uid://drtp4uh80rd2m" path="res://resources/paddle_visitors/enable_paddle_hitbox.tres" id="4_7f16x"]
 [ext_resource type="Resource" uid="uid://ctawut8ro67dt" path="res://resources/ball_visitors/center.tres" id="4_62d3v"]
 [ext_resource type="Resource" uid="uid://yqnex3abrwc7" path="res://resources/ball_visitors/at_least_1.tres" id="4_o1fej"]
 [ext_resource type="Resource" uid="uid://xchqk60e7cax" path="res://resources/level_manager_visitors/go_to_previous_level.tres" id="4_oua3q"]
@@ -33,6 +34,7 @@ add_player_abilities = Array[ExtResource("1_xlvlk")]([ExtResource("2_o1fej")])
 remove_added_abilities_on_exit = Array[ExtResource("1_xlvlk")]([])
 allow_player_join = false
 player_arrange = ExtResource("9_22fyv")
+on_arrange_finished = Array[ExtResource("1_i25mk")]([ExtResource("4_7f16x")])
 on_back = Array[ExtResource("1_i25mk")]([ExtResource("4_oua3q")])
 on_one_player_left = Array[ExtResource("1_i25mk")]([])
 metadata/_custom_type_script = "uid://d2atqpi2j25a4"
