@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PaddleVisitHitbox" load_steps=3 format=3 uid="uid://de8mfdd80p6gy"]
 
-[ext_resource type="PackedScene" uid="uid://x88a7460y3x3" path="res://resources/abilities/basic/basic_paddle_hitbox.tscn" id="1_pygi4"]
+[ext_resource type="PackedScene" uid="uid://x88a7460y3x3" path="res://resources/abilities/tipper/tipper_paddle_hitbox.tscn" id="1_pygi4"]
 [ext_resource type="Script" uid="uid://bi0viw7jb5xss" path="res://entities/paddle/visitors/hitbox.gd" id="2_8228q"]
 
 [resource]

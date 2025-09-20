@@ -20,8 +20,8 @@ func _ready() -> void:
 
 func _on_player1_set(player: Player):
     _log.info("connected player 1")
-    if not player.input.attack.is_connected(_on_player1_input_attack):
-        player.input.attack.connect(_on_player1_input_attack)
+    if not player.input_controller.attack.is_connected(_on_player1_input_attack):
+        player.input_controller.attack.connect(_on_player1_input_attack)
 
 func _on_play_pressed():
     Visitor.visit_any(self, on_play_pressed)

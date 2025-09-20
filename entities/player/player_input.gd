@@ -1,13 +1,14 @@
 extends InputController
 class_name PlayerInput
 
+var _log = Logger.new("player_input_controller")
 @export var config: PlayerInputConfig
 ## TODO
 @export var device: int
 
-func _unhandled_input(event: InputEvent) -> void:
+func on_input_event(event: InputEvent) -> void:
     if not config:
-        return
+        return _log.warn("no config set")
     
     if event.is_pressed() and not event.is_echo():
         if \

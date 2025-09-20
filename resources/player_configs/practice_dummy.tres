@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PlayerConfig" load_steps=5 format=3 uid="uid://bwsxdfb0831w8"]
+
+[ext_resource type="Script" uid="uid://bdtqd64nsacgq" path="res://entities/player/player_config.gd" id="1_madrx"]
+[ext_resource type="Resource" uid="uid://drisj36lky4o6" path="res://resources/character_configs/knight/knight.tres" id="1_nvbvv"]
+[ext_resource type="Resource" uid="uid://daw8g52iih1fd" path="res://resources/input_controllers/ai_input.tres" id="2_a8v0f"]
+[ext_resource type="Resource" uid="uid://qxjclq40sykf" path="res://resources/weapons/sword/sword.tres" id="3_a8v0f"]
+
+[resource]
+script = ExtResource("1_madrx")
+name = &"practice_dummy"
+input_controller = ExtResource("2_a8v0f")
+device = 0
+character = ExtResource("1_nvbvv")
+palette_index = 0
+weapon = ExtResource("3_a8v0f")
+metadata/_custom_type_script = "uid://bdtqd64nsacgq"

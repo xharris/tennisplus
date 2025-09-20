@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CharacterConfig" load_steps=4 format=3 uid="uid://drisj36lky4o6"]
+
+[ext_resource type="Texture2D" uid="uid://b57ggvojn1tf" path="res://resources/character_configs/knight/knight.png" id="1_18dpf"]
+[ext_resource type="Script" uid="uid://be0ne2wbni8ol" path="res://entities/character/visitors/palette.gd" id="2_deasw"]
+[ext_resource type="Script" uid="uid://chtxmvehapm50" path="res://entities/character/character_config.gd" id="3_no6x8"]
+
+[resource]
+script = ExtResource("3_no6x8")
+name = "knight"
+body_texture = ExtResource("1_18dpf")
+palettes = Array[ExtResource("2_deasw")]([])
+arm_length = 7
+arm_position = Vector2(8, 2)
+metadata/_custom_type_script = "uid://chtxmvehapm50"

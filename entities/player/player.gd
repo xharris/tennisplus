@@ -10,15 +10,20 @@ static func create() -> Player:
     return me
 
 @onready var paddle: Paddle = $Paddle
-@onready var input: PlayerInput = $PlayerInput
 @onready var sprite: CharacterSprite = $CharacterSprite
 
+var input_controller: InputController:
+    set(v):
+        paddle.input_controller = v
+    get:
+        return paddle.input_controller
 @export var config: PlayerConfig:
     set(v):
         config = v
         _config_updated()
 
 ## player 1, player 2, etc
+## TODO remove and use index in group?
 var index = 0
 
 func _init() -> void:
@@ -28,8 +33,10 @@ func _init() -> void:
 func _config_updated():
     if not (config and is_inside_tree()):
         return
-    input.config = config.input
     sprite.config = config.character
+    paddle.input_controller = config.input_controller
+    if paddle.input_controller is PlayerInput:
+        paddle.input_controller.config = config.input
 
 func _ready() -> void:
     add_to_group(Groups.PLAYER)
@@ -37,16 +44,22 @@ func _ready() -> void:
     _config_updated()
     
     paddle.health_controller.died.connect(_on_died)
-    paddle.ability_controller.activated.connect(_on_ability_activated)
-    sprite.weapon.attacked.connect(paddle.hitbox_controller.attack)
-    input.attack.connect(_on_input_attack)
+    paddle.ability_controller.attack_activated.connect(_on_attack_activated)
+    sprite.weapon.attack_window_entered.connect(_on_weapon_attack_window_entered)
+    sprite.weapon.attack_window_exited.connect(_on_weapon_attack_window_exited)
+    sprite.animation_player.animation_finished.connect(_on_sprite_animation_finished)
 
-func _on_input_attack():
-    if paddle.hitbox_controller.enabled:
-        sprite.play_attack_animation()
+func _on_sprite_animation_finished(_name: StringName):
+    sprite.weapon.attack_end()
 
-func _on_ability_activated(a: Ability):
-    paddle.hitbox_controller.cooldown = a.attack_cooldown
+func _on_weapon_attack_window_entered():
+    paddle.hitbox_controller.enabled = true
+
+func _on_weapon_attack_window_exited():
+    paddle.hitbox_controller.enabled = false
+    
+func _on_attack_activated(_a: Ability):
+    sprite.play_attack_animation()
 
 func _on_died():
     destroy()

@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="PaddleVisitHitbox" load_steps=3 format=3 uid="uid://ih6vohpl8ki0"]
-
-[ext_resource type="Script" uid="uid://bi0viw7jb5xss" path="res://entities/paddle/visitors/hitbox.gd" id="1_f4q6x"]
-[ext_resource type="PackedScene" uid="uid://d1fj41qciff6o" path="res://resources/abilities/practice_dummy/practice_dummy_hitbox.tscn" id="1_oou5s"]
-
-[resource]
-script = ExtResource("1_f4q6x")
-scene = ExtResource("1_oou5s")
-metadata/_custom_type_script = "uid://bi0viw7jb5xss"

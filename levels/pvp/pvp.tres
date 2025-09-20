@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://cbqljtm6u5idx" path="res://resources/ball_visitors/target_any_paddle.tres" id="4_gf442"]
 [ext_resource type="Resource" uid="uid://yqnex3abrwc7" path="res://resources/ball_visitors/at_least_1.tres" id="4_pp2g7"]
 [ext_resource type="Resource" uid="uid://drtp4uh80rd2m" path="res://resources/paddle_visitors/enable_paddle_hitbox.tres" id="5_m83sb"]
-[ext_resource type="Resource" uid="uid://cdr56dtnig3kb" path="res://resources/abilities/basic/set_ball_damage_1.tres" id="6_nfjqb"]
+[ext_resource type="Resource" uid="uid://cdr56dtnig3kb" path="res://resources/abilities/tipper/set_ball_damage_1.tres" id="6_nfjqb"]
 [ext_resource type="Resource" uid="uid://d3gkswqhlxxq5" path="res://levels/pvp/pvp_player_arrange.tres" id="8_nfjqb"]
 [ext_resource type="Resource" uid="uid://teegm0rjwqia" path="res://resources/level_manager_visitors/go_to_pvp_victory.tres" id="9_daank"]
 

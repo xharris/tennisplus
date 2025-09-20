@@ -11,10 +11,12 @@ func accept(v: Visitor):
         v.visit_level_manager(self)
     if v is BallManagerVisitor:
         v.visit_ball_manager(BallManager)
+    if v is PlayerManagerVisitor:
+        v.visit_player_manager(PlayerManager)
     accepted_visitor.emit(v)
 
 func enter(config: LevelConfig):
-    _log.debug("enter %s" % config.name)
+    _log.info("enter %s" % config.name)
     if config.players_required:
         var player_count = get_tree().get_node_count_in_group(Groups.PLAYER)
         if config.players_required.get_min() > 0 and player_count < config.players_required.get_min():

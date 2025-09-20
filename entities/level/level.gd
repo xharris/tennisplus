@@ -28,10 +28,10 @@ func _ready() -> void:
         _on_player1_set(player1)
     for p: Player in get_tree().get_nodes_in_group(Groups.PLAYER):
         _on_player_joined(p)
+    Visitor.visit_any(self, config.on_enter)
     if _player_arrange:
         await PlayerManager.arrange_players(_player_arrange)
     Visitor.visit_any(self, config.on_arrange_finished)
-    Visitor.visit_any(self, config.on_enter)
 
 func _on_ball_created(ball: Ball):
     Visitor.visit_any(self, config.on_ball_created)
@@ -59,7 +59,7 @@ func _on_player_died():
         await PlayerManager.arrange_players(_player_arrange)
         
 func _on_player1_set(player: Player):
-    player.input.back.connect(_on_player_input_back)
+    player.input_controller.back.connect(_on_player_input_back)
 
 func _on_player_input_back():
     Visitor.visit_any(self, config.on_back)

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PlayerInput" load_steps=2 format=3 uid="uid://cvsmumtv4hp5e"]
+
+[ext_resource type="Script" uid="uid://bryg057cxhy7b" path="res://entities/player/player_input.gd" id="1_4b70p"]
+
+[resource]
+script = ExtResource("1_4b70p")
+device = 0
+metadata/_custom_type_script = "uid://bryg057cxhy7b"

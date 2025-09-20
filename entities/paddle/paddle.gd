@@ -1,9 +1,7 @@
 extends Node2D
 class_name Paddle
 
-#signal connected_exports
-
-var _log = Logger.new("paddle")
+var _log = Logger.new("paddle")#, Logger.Level.DEBUG)
 @onready var hitbox_controller: PaddleHitboxController = $HitboxContoller
 @onready var ability_controller: AbilityController = $AbilityController
 @onready var health_controller: HealthController = $Health
@@ -13,11 +11,10 @@ var _log = Logger.new("paddle")
         abilities = v
         if ability_controller:
             ability_controller.abilities = abilities
-@export var input: InputController:
+@export var input_controller: InputController:
     set(v):
-        input = v
-        if is_inside_tree():
-            _connect_exports()
+        input_controller = v.duplicate(true)
+        _config_updated()
 
 func accept(v: Visitor):
     if v is PaddleVisitor:
@@ -35,19 +32,26 @@ func set_log_prefix(prefix: String):
 func _ready() -> void:
     add_to_group(Groups.PADDLE)
     
-    _connect_exports()
-    hitbox_controller.hit.connect(ability_controller.hit)
     hitbox_controller.accepted_visitor.connect(accept)
     ability_controller.accepted_visitor.connect(accept)
-    health_controller.area2d.body_entered_once.connect(ability_controller.hit_by)
-    health_controller.damage_taken.connect(ability_controller.take_damage)
     
-    ability_controller.abilities = abilities
-    ability_controller.next_ability()
+    hitbox_controller.hit.connect(ability_controller.hit)
+    health_controller.area2d.body_entered_once.connect(ability_controller.get_hit_by)
+    #health_controller.damage_taken.connect(ability_controller.take_damage)
+    
+    _config_updated()
 
-func _connect_exports():
-    if not input:
-        _log.warn_if(is_inside_tree(), "no input configured")
+func _unhandled_input(event: InputEvent) -> void:
+    if input_controller:
+        input_controller.on_input_event(event)
+
+func _config_updated():
+    if not is_inside_tree():
         return
-    input.ability.connect(ability_controller.activate)
-    #connected_exports.emit()
+    if input_controller:
+        _log.debug("input_controller controller configured")
+        input_controller.use_paddle(self)
+        input_controller.attack.connect(ability_controller.do_attack)
+        input_controller.ability.connect(ability_controller.do_special)
+    ability_controller.abilities = abilities
+    ability_controller.do_passive()

@@ -21,37 +21,43 @@ var _player1: Player
 var player_join_enabled: bool = true
 
 func _unhandled_input(event: InputEvent) -> void:
+    if not player_join_enabled:
+        return
     for c in player_input_configs:
         # check if player already exists
         var skip = false
         for p: Player in get_tree().get_nodes_in_group(Groups.PLAYER):
-            if p.input.config.name == c.name:
+            var input: InputController = p.input_controller
+            if input is PlayerInput and input.config and input.config.name == c.name:
                 skip = true
                 break
         if skip:
             continue
         # is a player trying to join?
-        if player_join_enabled and c.is_pressed(event, c.attack):
-            var view = get_viewport_rect()
-            # add new player
-            var new_player = Player.create()
-            # existing profile using this keymap?
+        if c.is_pressed(event, c.attack):
+            var config: PlayerConfig = DEFAULT_PLAYER_CONFIG.duplicate(true)
             for c2: PlayerConfig in player_configs:
                 if c2.input and c2.input.attack.is_match(event):
-                    new_player.config = c2.duplicate(true)
-            if not new_player.config:
-                new_player.config = DEFAULT_PLAYER_CONFIG.duplicate(true)
-            _log.info("player wants to join: %s" % [new_player.config.name])
-            # move player to top middle off-screen
-            new_player.global_position.x = view.size.x / 2
-            new_player.global_position.y = view.position.y - 120
-            new_player.name = c.name
-            add_child(new_player)
-            player_joined.emit(new_player)
-            # is this a new player1?
-            if not _player1:
-                _player1 = new_player
-                player1_set.emit(_player1)
+                    config = c2.duplicate(true)
+            var new_player = add_player(config)
+
+func add_player(config: PlayerConfig) -> Player:
+    var view = get_viewport_rect()
+    # add new player
+    var new_player = Player.create()
+    new_player.config = config
+    _log.info("add player, config=%s" % [new_player.config.name])
+    # move player to top middle off-screen
+    new_player.global_position.x = view.size.x / 2
+    new_player.global_position.y = view.position.y - 120
+    new_player.name = config.name
+    add_child(new_player)
+    player_joined.emit(new_player)
+    # is this a new player1?
+    if not _player1:
+        _player1 = new_player
+        player1_set.emit(_player1)
+    return new_player
 
 func get_player1() -> Player:
     return _player1
@@ -61,10 +67,10 @@ func arrange_players(config: PlayerArrangeConfig):
     await get_tree().process_frame
     var view = get_viewport_rect()
     var view_center = view.get_center()
-    var radius = min(view.size.x, view.size.y) * config.radius
+    var radius = max(0, min(view.size.x, view.size.y) * config.radius - 30)
     var count = get_tree().get_node_count_in_group(Groups.PLAYER)
     var i: float = 0
-    _log.debug("count: %d, i start: %d" % [count, i])
+    _log.info("arrange %d" % [count])
     var signals: Array[Signal]
     for p: Player in get_tree().get_nodes_in_group(Groups.PLAYER):
         var weight = 0.5

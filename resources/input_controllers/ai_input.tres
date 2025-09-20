@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AIInput" load_steps=2 format=3 uid="uid://daw8g52iih1fd"]
+
+[ext_resource type="Script" uid="uid://dum4lxxnx1pff" path="res://entities/ai/ai_input.gd" id="1_phvfk"]
+
+[resource]
+script = ExtResource("1_phvfk")
+metadata/_custom_type_script = "uid://dum4lxxnx1pff"

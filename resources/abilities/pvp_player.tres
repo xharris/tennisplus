@@ -8,9 +8,11 @@
 [resource]
 script = ExtResource("2_gjud7")
 name = "pvp_player"
-passive = true
-activate_immediately = true
-on_activate = Array[ExtResource("1_tdspr")]([])
+attack_cooldown = 1.0
+passive = Array[ExtResource("1_tdspr")]([])
+on_attack = Array[ExtResource("1_tdspr")]([])
+on_special = Array[ExtResource("1_tdspr")]([])
+on_ultimate = Array[ExtResource("1_tdspr")]([])
 on_hit_ball = Array[ExtResource("1_tdspr")]([])
 on_hit_by_ball = Array[ExtResource("1_tdspr")]([ExtResource("2_spmke"), ExtResource("3_vvb8i")])
 metadata/_custom_type_script = "uid://kqfyrs15oaxb"

@@ -2,16 +2,19 @@
 extends Node2D
 class_name BallPhysics
 
+var _log = Logger.new("ball_physics")#, Logger.Level.DEBUG)
+
 @export var apply_to: Node2D
-@export var speed_curve: Curve2D
-var speed_scale: float = 1.0:
+@export var speed_curve: Curve = Constants.BALL_SPEED_CURVE
+var speed_scale: float = 0.5:
     set(v):
-        speed_scale = v
+        speed_scale = clampf(v, 0, 1)
+        var curve_speed_scale = speed_curve.sample(speed_scale)
+        _log.debug("speed scale: %f -> %f" % [speed_scale, curve_speed_scale])
         if _tween:
-            _tween.set_speed_scale(speed_scale)
+            _tween.set_speed_scale(curve_speed_scale)
 var curve_distance: RangeInt = Constants.BALL_PHYSICS_CONTROL_POINT_DISTANCE
 
-var _log = Logger.new("ball_physics")#, Logger.Level.DEBUG)
 var _target: Node2D
 var _last_target: Node2D
 var _position_curve: Curve2D
@@ -29,9 +32,12 @@ func _draw() -> void:
 func _process(delta: float) -> void:
     if _tween:
         queue_redraw()
+
+func _physics_process(delta: float) -> void:
     if _position_curve and _target:
         # maintain ball target path
         _position_curve.set_point_position(1, _target.global_position)
+
 
 func get_last_target() -> Node2D:
     return _last_target
@@ -39,10 +45,10 @@ func get_last_target() -> Node2D:
 func set_target(target: Node2D):
     if _tween and _tween.is_running():
         _on_tween_finished()
-    _log.info("set target: %s -> %s" % [_last_target, target])
+    _log.debug("set target: %s -> %s" % [_last_target, target])
     _target = target
-    if _target and not _last_target:
-        _last_target = _target
+    if not _target:
+        return
     var target_position = target.global_position
     var midpoint = (target_position + global_position) / 2
     _debug_midpoint = midpoint
@@ -65,6 +71,7 @@ func set_target(target: Node2D):
     _position_curve.set_point_in(1, control_point - target_position)
     # tween on path
     _tween = create_tween()
+    _tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
     _tween.set_trans(Tween.TRANS_LINEAR)
     _tween.set_ease(Tween.EASE_OUT)
     _tween.tween_method(
@@ -74,6 +81,7 @@ func set_target(target: Node2D):
         Constants.BALL_PHYSICS_TWEEN_DURATION
     )
     _tween.finished.connect(_on_tween_finished)
+    _last_target = target
 
 func _on_tween_finished():
     _log.debug("tween finished")

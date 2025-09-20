@@ -88,12 +88,12 @@ libraries = {
 &"": ExtResource("3_w25rh"),
 &"weapon": ExtResource("8_nlfoy")
 }
-speed_scale = 2.0
+speed_scale = 2.5
 
 [node name="Weapons" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(22, 26.2487)
-rotation = 1.0472
+position = Vector2(6.92885, 29.9795)
+rotation = -2.19409
 scale = Vector2(4, 4)
 
 [node name="Sword" parent="Weapons" instance=ExtResource("4_uojkm")]

@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_h6ico")
-speed_scale = 1.5
+operation = 0
+speed_scale = 1.0
 metadata/_custom_type_script = "uid://3bywlq56klkw"
