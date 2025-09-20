@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cc2nu1a12hwqc"
+path="res://.godot/imported/hand.aseprite-6058c21fc64d5e996610f635c6c6d42b.res"
+
+[deps]
+
+source_file="res://resources/character_configs/blank/hand.aseprite"
+dest_files=["res://.godot/imported/hand.aseprite-6058c21fc64d5e996610f635c6c6d42b.res"]
+
+[params]
+

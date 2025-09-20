@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkotr2ml8xpc7"]
+[gd_scene load_steps=5 format=3 uid="uid://dkotr2ml8xpc7"]
 
 [ext_resource type="Texture2D" uid="uid://6ox8bmgkaohx" path="res://resources/weapons/sword/sword.png" id="1_if4gf"]
 [ext_resource type="Script" uid="uid://bqihklph2oh5p" path="res://resources/weapons/sword/sword.gd" id="1_qn4ib"]
+[ext_resource type="PackedScene" uid="uid://c1droohxbfav3" path="res://entities/trail/trail.tscn" id="3_j20dk"]
+[ext_resource type="PackedScene" uid="uid://dy7467i4wypm0" path="res://entities/weapon/weapon_contact_point.tscn" id="3_p4yu8"]
 
 [node name="Sword" type="Node2D"]
 script = ExtResource("1_qn4ib")
@@ -10,5 +12,9 @@ script = ExtResource("1_qn4ib")
 position = Vector2(0, -11)
 texture = ExtResource("1_if4gf")
 
-[node name="Line2D" type="Line2D" parent="."]
-position = Vector2(0, -14)
+[node name="Trail" parent="." instance=ExtResource("3_j20dk")]
+position = Vector2(2, -17)
+trail_length = 5.0
+
+[node name="WeaponContactPoint" parent="." instance=ExtResource("3_p4yu8")]
+position = Vector2(0, -17)

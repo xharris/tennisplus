@@ -6,7 +6,10 @@
 
 [resource]
 script = ExtResource("1_h64vs")
+name = "blanke"
 body_texture = ExtResource("1_21j4t")
 hand_texture = ExtResource("2_orwui")
 color = Color(1, 1, 1, 1)
+arm_length = 7
+arm_position = Vector2(8, 2)
 metadata/_custom_type_script = "uid://chtxmvehapm50"

@@ -9,6 +9,7 @@ class_name WeaponConfig
 ## is supposed to land
 @export var animations: AnimationLibrary
 @export var can_reverse_animation: bool = false
+@export var arm_length: int = 12
 
 func has_animations() -> bool:
     return animations and animations.get_animation_list_size() > 0

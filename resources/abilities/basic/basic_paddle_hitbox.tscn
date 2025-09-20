@@ -8,13 +8,13 @@
 [ext_resource type="Resource" uid="uid://d2revy4d8pb12" path="res://resources/ball_visitors/normal_speed.tres" id="5_a2gor"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vwoo2"]
-radius = 60.0
+radius = 80.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nnd5b"]
-radius = 130.0
+radius = 200.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fk22a"]
-radius = 100.0
+radius = 165.0
 
 [node name="Default" type="Node2D"]
 

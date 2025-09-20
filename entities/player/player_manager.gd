@@ -3,6 +3,12 @@ extends Node2D
 signal player_joined(p: Player)
 signal player1_set(p: Player)
 
+var DEFAULT_PLAYER_CONFIG: PlayerConfig = preload("res://resources/player_configs/default.tres")
+
+var player_configs: Array[PlayerConfig] = [
+    preload("res://resources/player_configs/toast.tres")
+]
+
 ## TODO replace with player_settings_configs when settings are saved/loaded
 var player_input_configs: Array[PlayerInputConfig] = [
     preload("res://resources/player_input_configs/player1_key.tres"),
@@ -26,11 +32,16 @@ func _unhandled_input(event: InputEvent) -> void:
             continue
         # is a player trying to join?
         if player_join_enabled and c.is_pressed(event, c.attack):
-            _log.info("player wants to join: %s" % [c.name])
             var view = get_viewport_rect()
             # add new player
             var new_player = Player.create()
-            new_player.input_config = c
+            # existing profile using this keymap?
+            for c2: PlayerConfig in player_configs:
+                if c2.input and c2.input.attack.is_match(event):
+                    new_player.config = c2.duplicate(true)
+            if not new_player.config:
+                new_player.config = DEFAULT_PLAYER_CONFIG.duplicate(true)
+            _log.info("player wants to join: %s" % [new_player.config.name])
             # move player to top middle off-screen
             new_player.global_position.x = view.size.x / 2
             new_player.global_position.y = view.position.y - 120

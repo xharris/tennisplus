@@ -1,14 +1,17 @@
-[gd_resource type="Resource" script_class="CharacterConfig" load_steps=4 format=3 uid="uid://c2xosusryac78"]
+[gd_resource type="Resource" script_class="CharacterConfig" load_steps=6 format=3 uid="uid://c2xosusryac78"]
 
 [ext_resource type="Texture2D" uid="uid://bnhfu7bfc6uem" path="res://resources/character_configs/frog/frog.png" id="1_wpaa2"]
 [ext_resource type="Texture2D" uid="uid://d81xetfffldh" path="res://resources/character_configs/blank/hand.png" id="2_ehdb2"]
+[ext_resource type="Script" uid="uid://be0ne2wbni8ol" path="res://entities/character/visitors/palette.gd" id="3_26xtc"]
 [ext_resource type="Script" uid="uid://chtxmvehapm50" path="res://entities/character/character_config.gd" id="3_a82u2"]
+[ext_resource type="Resource" uid="uid://s3gjiohp4j3a" path="res://resources/character_configs/frog/palettes/amphibian/amphibian.tres" id="4_58spt"]
 
 [resource]
 script = ExtResource("3_a82u2")
+name = "froggy"
 body_texture = ExtResource("1_wpaa2")
 hand_texture = ExtResource("2_ehdb2")
-color = Color(1, 1, 1, 1)
+palettes = Array[ExtResource("3_26xtc")]([ExtResource("4_58spt")])
 arm_length = 10
 arm_position = Vector2(8, 2)
 metadata/_custom_type_script = "uid://chtxmvehapm50"

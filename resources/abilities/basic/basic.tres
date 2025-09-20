@@ -9,8 +9,10 @@
 script = ExtResource("2_8ujpo")
 name = "basic"
 passive = false
+attack_cooldown = 1.0
 activate_immediately = true
 on_activate = Array[ExtResource("1_sbe6e")]([ExtResource("2_cv25m")])
+use_activate_animation = true
 on_hit_ball = Array[ExtResource("1_sbe6e")]([ExtResource("3_iyecu")])
 on_hit_by_ball = Array[ExtResource("1_sbe6e")]([])
 metadata/_custom_type_script = "uid://kqfyrs15oaxb"

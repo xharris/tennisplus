@@ -10,4 +10,5 @@ name = &"sword"
 scene = ExtResource("1_14lku")
 animations = ExtResource("1_25be7")
 can_reverse_animation = true
+arm_length = 12
 metadata/_custom_type_script = "uid://dqxipss3m6uis"

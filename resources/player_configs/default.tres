@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PlayerConfig" load_steps=4 format=3 uid="uid://cxlpqpygonrn3"]
+
+[ext_resource type="Resource" uid="uid://dhphfyc6mqwbu" path="res://resources/character_configs/blank/blank.tres" id="1_2kx6j"]
+[ext_resource type="Script" uid="uid://bdtqd64nsacgq" path="res://entities/player/player_config.gd" id="2_kiv2f"]
+[ext_resource type="Resource" uid="uid://qxjclq40sykf" path="res://resources/weapons/sword/sword.tres" id="3_yn6sf"]
+
+[resource]
+script = ExtResource("2_kiv2f")
+name = &"player"
+device = 0
+character = ExtResource("1_2kx6j")
+palette_index = 0
+weapon = ExtResource("3_yn6sf")
+metadata/_custom_type_script = "uid://bdtqd64nsacgq"

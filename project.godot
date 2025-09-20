@@ -13,6 +13,7 @@ config_version=5
 config/name="tennisplus"
 run/main_scene="uid://8ffchtq6v2ih"
 config/features=PackedStringArray("4.4", "Mobile")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
@@ -25,7 +26,7 @@ LevelManager="*res://entities/level/level_manager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/gut/plugin.cfg")
 
 [input]
 

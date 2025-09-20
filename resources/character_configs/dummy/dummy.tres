@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CharacterConfig" load_steps=3 format=3 uid="uid://drisj36lky4o6"]
+
+[ext_resource type="Texture2D" uid="uid://b57ggvojn1tf" path="res://resources/character_configs/dummy/dummy.png" id="1_5w120"]
+[ext_resource type="Script" uid="uid://chtxmvehapm50" path="res://entities/character/character_config.gd" id="1_oj6vr"]
+
+[resource]
+script = ExtResource("1_oj6vr")
+name = "knummy"
+body_texture = ExtResource("1_5w120")
+color = Color(1, 1, 1, 1)
+arm_length = 7
+arm_position = Vector2(8, 2)
+metadata/_custom_type_script = "uid://chtxmvehapm50"

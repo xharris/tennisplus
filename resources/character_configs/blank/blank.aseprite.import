@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c08q4ajjhtnbx"
+path="res://.godot/imported/blank.aseprite-0e64002c2d5051be5978e07dcdecbec7.res"
+
+[deps]
+
+source_file="res://resources/character_configs/blank/blank.aseprite"
+dest_files=["res://.godot/imported/blank.aseprite-0e64002c2d5051be5978e07dcdecbec7.res"]
+
+[params]
+

@@ -13,11 +13,10 @@ static func create() -> Player:
 @onready var input: PlayerInput = $PlayerInput
 @onready var sprite: CharacterSprite = $CharacterSprite
 
-@export var input_config: PlayerInputConfig:
+@export var config: PlayerConfig:
     set(v):
-        input_config = v
-        if input:
-            input.config = input_config
+        config = v
+        _config_updated()
 
 ## player 1, player 2, etc
 var index = 0
@@ -25,11 +24,17 @@ var index = 0
 func _init() -> void:
     _player_count += 1
     index = _player_count
+    
+func _config_updated():
+    if not (config and is_inside_tree()):
+        return
+    input.config = config.input
+    sprite.config = config.character
 
 func _ready() -> void:
     add_to_group(Groups.PLAYER)
-    input.config = input_config
     set_log_prefix("player%d" % index)
+    _config_updated()
     
     paddle.health_controller.died.connect(_on_died)
     paddle.ability_controller.activated.connect(_on_ability_activated)

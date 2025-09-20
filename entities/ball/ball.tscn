@@ -1,17 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://cy0xaqlkrhrbc"]
+[gd_scene load_steps=6 format=3 uid="uid://cy0xaqlkrhrbc"]
 
 [ext_resource type="Texture2D" uid="uid://btx4a4he8e33m" path="res://entities/ball/ball.png" id="1_61umk"]
 [ext_resource type="Script" uid="uid://coa4cy7ort0t0" path="res://entities/ball/ball.gd" id="1_w5wpn"]
 [ext_resource type="PackedScene" uid="uid://xhufob6bfkcm" path="res://entities/ball/ball_physics.tscn" id="3_we1t7"]
 [ext_resource type="PackedScene" uid="uid://b8ov8dlpct3is" path="res://entities/ball/ball_hitbox.tscn" id="4_we1t7"]
+[ext_resource type="PackedScene" uid="uid://c1droohxbfav3" path="res://entities/trail/trail.tscn" id="5_6mrx1"]
 
 [node name="Ball" type="Node2D"]
 script = ExtResource("1_w5wpn")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(3, 3)
 texture = ExtResource("1_61umk")
 
 [node name="Physics" parent="." node_paths=PackedStringArray("apply_to") instance=ExtResource("3_we1t7")]
 apply_to = NodePath("..")
 
 [node name="Hitbox" parent="." instance=ExtResource("4_we1t7")]
+
+[node name="Trail" parent="." instance=ExtResource("5_6mrx1")]
+trail_width = 20.0
+trail_length = 15.0
