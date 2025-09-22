@@ -2,9 +2,10 @@
 extends Area2D
 class_name Area2DEnterOnce
 
+static var _static_log = Logger.new("area2d_enter_once")
+
 signal body_entered_once(body: Node2D)
 
-var _log = Logger.new("area2d_enter_once")
 var _bodies_entered: Dictionary
 
 func _ready() -> void:
@@ -20,7 +21,7 @@ func _on_body_entered(body: Node2D):
     body_entered_once.emit(body)
     
 func _on_body_exited(body: Node2D):
-    _log.debug("body left: %s" % body)
+    _static_log.debug("body left: %s" % body)
     _bodies_entered.erase(body.get_instance_id())
 
 func get_entered_bodies() -> Array[Node2D]:

@@ -3,7 +3,11 @@ class_name Logger
 
 enum Level {NONE, ERROR, WARN, INFO, DEBUG}
 static var _max_prefix_length: int = 0
-static var _global_level = Level.NONE
+static var _global_level = Level.NONE:
+    get:
+        if not _global_level:
+            return Level.NONE
+        return _global_level
 
 static func set_global_level(level):
     print_rich("[color=%s][b]set global log level %s[/b][/color]" % [Color.WHITE, Level.find_key(level)])

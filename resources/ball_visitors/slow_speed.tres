@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_wp4cw")
 operation = 0
-speed_scale = 0.2
+speed_scale = 0.0
 metadata/_custom_type_script = "uid://3bywlq56klkw"

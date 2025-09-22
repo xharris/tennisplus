@@ -19,6 +19,7 @@ radius = 155.0
 
 [node name="Inner" parent="." instance=ExtResource("1_g16xl")]
 on_hit_ball = Array[ExtResource("2_8uxdr")]([ExtResource("4_b6i5d")])
+color = Color(0.772549, 0.882353, 0.647059, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Inner"]
 shape = SubResource("CircleShape2D_vwoo2")
@@ -26,6 +27,7 @@ debug_color = Color(0.298039, 0.686275, 0.313726, 0.419608)
 
 [node name="Outer" parent="." instance=ExtResource("1_g16xl")]
 on_hit_ball = Array[ExtResource("2_8uxdr")]([ExtResource("5_jbxpq")])
+color = Color(0.937255, 0.603922, 0.603922, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Outer"]
 shape = SubResource("CircleShape2D_nnd5b")
@@ -33,6 +35,7 @@ debug_color = Color(0.956863, 0.262745, 0.211765, 0.419608)
 
 [node name="Middle" parent="." instance=ExtResource("1_g16xl")]
 on_hit_ball = Array[ExtResource("2_8uxdr")]([ExtResource("6_lsvnu")])
+color = Color(1, 0.8, 0.501961, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Middle"]
 shape = SubResource("CircleShape2D_fk22a")

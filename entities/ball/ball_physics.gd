@@ -2,6 +2,8 @@
 extends Node2D
 class_name BallPhysics
 
+signal target_set(target: Node2D)
+
 var _log = Logger.new("ball_physics")#, Logger.Level.DEBUG)
 
 @export var apply_to: Node2D
@@ -82,6 +84,7 @@ func set_target(target: Node2D):
     )
     _tween.finished.connect(_on_tween_finished)
     _last_target = target
+    target_set.emit(target)
 
 func _on_tween_finished():
     _log.debug("tween finished")

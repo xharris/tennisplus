@@ -1,7 +1,62 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5ojur7k7urdw"]
+[gd_scene load_steps=10 format=3 uid="uid://b5ojur7k7urdw"]
 
 [ext_resource type="Script" uid="uid://babhlywige3u0" path="res://entities/paddle/paddle_hitbox.gd" id="1_8niss"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hn7sl"]
+load_path = "res://.godot/imported/circle.png-3d96ad45b8f5fefd8b1b5e6b39e5e98b.ctex"
+
+[sub_resource type="Gradient" id="Gradient_cipvw"]
+offsets = PackedFloat32Array(0.0813124, 0.463623, 1)
+colors = PackedColorArray(0.96, 0.96, 0.96, 1, 0.97, 0.97, 0.97, 0.643137, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4s1ho"]
+gradient = SubResource("Gradient_cipvw")
+width = 4
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_5pk17"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ouris"]
+curve = SubResource("Curve_5pk17")
+
+[sub_resource type="Curve" id="Curve_6fast"]
+_data = [Vector2(0, 0.92029), 0.0, 0.0, 0, 0, Vector2(0.0410596, 0.631884), 0.0, 0.0, 0, 0, Vector2(0.833113, 0.488406), 0.0, 0.0, 0, 0, Vector2(1, 0.315942), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_yfc8t"]
+curve = SubResource("Curve_6fast")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dxkk4"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 128.0
+emission_ring_inner_radius = 128.0
+emission_ring_cone_angle = 90.0
+radial_accel_min = -62.25
+radial_accel_max = -62.25
+scale_min = 0.0
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_yfc8t")
+color_ramp = SubResource("GradientTexture1D_4s1ho")
+hue_variation_curve = SubResource("CurveTexture_ouris")
+
 [node name="Hitbox" type="Area2D"]
 script = ExtResource("1_8niss")
+color = Color(1, 1, 1, 1)
 metadata/_custom_type_script = "uid://dds5gb43it5ha"
+
+[node name="Indicator" type="Node2D" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="CircleParticles" type="GPUParticles2D" parent="Indicator"]
+unique_name_in_owner = true
+amount = 700
+texture = SubResource("CompressedTexture2D_hn7sl")
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_dxkk4")
