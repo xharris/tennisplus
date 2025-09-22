@@ -8,6 +8,10 @@ signal attack_activated(ability: Ability)
 
 var _log = Logger.new("ability_controller")#, Logger.Level.DEBUG)
 var attack_cooldown: Dictionary
+## ability is usable at 100
+var ability_meter: int = 0
+## higher = faster cooldown
+var cooldown_speed_scale: float = 1.0
 
 func accept(v: Visitor):
     accepted_visitor.emit(v)
@@ -19,7 +23,7 @@ func _process(delta: float) -> void:
     for a in abilities:
         if attack_cooldown.has(a.name):
             var cd = attack_cooldown.get(a.name)
-            cd -= delta
+            cd -= delta * cooldown_speed_scale
             if cd <= 0:
                 _log.debug("off cooldown: %s" % [a.name])
                 attack_cooldown.erase(a.name)
@@ -40,6 +44,9 @@ func do_attack():
         attack_activated.emit(a)
         
 func do_special():
+    ## TODO uncomment
+    #if ability_meter < 100:
+        #return _log.debug("ability meter not filled")
     for a in abilities:
         Visitor.visit_any(self, a.on_special)
         

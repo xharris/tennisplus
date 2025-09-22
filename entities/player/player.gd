@@ -38,6 +38,9 @@ func _config_updated():
     if paddle.input_controller is PlayerInput:
         paddle.input_controller.config = config.input
 
+func _process(delta: float) -> void:
+    sprite.animation_player.speed_scale = paddle.ability_controller.cooldown_speed_scale
+
 func _ready() -> void:
     add_to_group(Groups.PLAYER)
     set_log_prefix("player%d" % index)

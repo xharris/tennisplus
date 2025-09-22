@@ -19,7 +19,9 @@ var _log = Logger.new("paddle")#, Logger.Level.DEBUG)
 func accept(v: Visitor):
     if v is PaddleVisitor:
         v.visit_paddle(self)
-    if v is HealthVisitor:
+    elif v is AbilityControllerVisitor:
+        v.visit_ability_controller(ability_controller)
+    elif v is HealthVisitor:
         v.visit_health(health_controller)
 
 func set_log_prefix(prefix: String):
