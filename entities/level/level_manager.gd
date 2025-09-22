@@ -9,10 +9,6 @@ var _current_config: LevelConfig
 func accept(v: Visitor):
     if v is LevelManagerVisitor:
         v.visit_level_manager(self)
-    if v is BallManagerVisitor:
-        v.visit_ball_manager(BallManager)
-    if v is PlayerManagerVisitor:
-        v.visit_player_manager(PlayerManager)
     accepted_visitor.emit(v)
 
 func enter(config: LevelConfig):
@@ -49,7 +45,5 @@ func _on_exit_level(level: Level):
     _log.debug("_on_exit_level called for %s" % [level])
     if level.config.clear_prev_config:
         _prev_config = null
-    if level.config.next_level:
-        enter(level.config.next_level)
     elif _prev_config:
         enter(_prev_config)

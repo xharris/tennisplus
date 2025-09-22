@@ -10,8 +10,8 @@
 [ext_resource type="Resource" uid="uid://b0xps821y1aas" path="res://resources/ball_visitors/destroy_all.tres" id="5_4v2ny"]
 [ext_resource type="Resource" uid="uid://cbqljtm6u5idx" path="res://resources/ball_visitors/target_any_paddle.tres" id="5_oua3q"]
 [ext_resource type="Script" uid="uid://cv6m8wtrwqp7k" path="res://resources/range_int.gd" id="6_ikcdi"]
+[ext_resource type="Resource" uid="uid://d3mbie1e7ytdq" path="res://levels/practice/add_dummy_if_single.tres" id="8_22fyv"]
 [ext_resource type="Resource" uid="uid://d3gkswqhlxxq5" path="res://levels/pvp/pvp_player_arrange.tres" id="9_22fyv"]
-[ext_resource type="Resource" uid="uid://c5flqquvgwyk1" path="res://levels/practice/add_practice_dummy.tres" id="9_d15mq"]
 
 [sub_resource type="Resource" id="Resource_28bch"]
 script = ExtResource("6_ikcdi")
@@ -23,7 +23,7 @@ metadata/_custom_type_script = "uid://cv6m8wtrwqp7k"
 script = ExtResource("2_wu15g")
 name = &"practice"
 players_required = SubResource("Resource_28bch")
-on_enter = Array[ExtResource("1_i25mk")]([ExtResource("9_d15mq")])
+on_enter = Array[ExtResource("1_i25mk")]([ExtResource("8_22fyv")])
 on_exit = Array[ExtResource("1_i25mk")]([ExtResource("5_4v2ny")])
 clear_prev_config = false
 on_ball_created = Array[ExtResource("1_i25mk")]([ExtResource("4_62d3v"), ExtResource("5_oua3q")])

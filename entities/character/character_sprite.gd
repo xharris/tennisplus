@@ -113,11 +113,11 @@ func play_attack_animation():
             animation_player.play_backwards(animation_name)
         else:
             animation_player.play(animation_name)
-        
+
 func set_hand_texture(tex: Texture2D):
     hand_l_sprite.texture = tex
     hand_r_sprite.texture = tex
-    
+
 func set_body_texture(tex: Texture2D):
     head.texture = tex
     body.texture = tex

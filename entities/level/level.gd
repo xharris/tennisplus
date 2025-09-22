@@ -67,8 +67,9 @@ func _on_player_input_back():
 func accept(v: Visitor):
     if v is LevelVisitor:
         v.visit_level(self)
-    for p: Paddle in get_tree().get_nodes_in_group(Groups.PADDLE):
-        p.accept(v)
+    if is_inside_tree():
+        for p: Paddle in get_tree().get_nodes_in_group(Groups.PADDLE):
+            p.accept(v)
     accepted_visitor.emit(v)
 
 func exit(skip_signal = false):

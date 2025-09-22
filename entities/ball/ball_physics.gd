@@ -40,6 +40,8 @@ func _physics_process(delta: float) -> void:
         # maintain ball target path
         _position_curve.set_point_position(1, _target.global_position)
 
+func is_targeting(node: Node2D) -> bool:
+    return _target and node == _target or node.is_ancestor_of(_target)
 
 func get_last_target() -> Node2D:
     return _last_target

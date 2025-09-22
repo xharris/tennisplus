@@ -7,6 +7,5 @@ static var _log = Logger.new("set_level")
 
 func visit_level_manager(me: LevelManager):
     var config = load(level_config)
-    if not config is LevelConfig:
-        return _log.warn("path is not LevelConfig: %s" % [level_config])
+    _log.error(config is not LevelConfig, "path is not LevelConfig: %s" % [level_config])
     me.enter(config as LevelConfig)

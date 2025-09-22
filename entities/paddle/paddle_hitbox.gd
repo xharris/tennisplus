@@ -1,5 +1,4 @@
 ## should only contain one collision shape
-@tool
 extends Area2DEnterOnce
 class_name PaddleHitbox
 
@@ -27,10 +26,12 @@ func accept(v: Visitor):
 
 func _process(delta: float) -> void:
     var balls: Array[Ball]
-    balls.assign(_targeting.keys().filter(_is_valid_ball))
+    balls.assign(_targeting.keys().filter(_is_targeting_ball))
     if balls.is_empty():
+        indicator.hide()
         circle_particles.amount_ratio = 0
     else:
+        indicator.show()
         var dist: float = INF
         var _closest_ball: Ball
         for ball in balls:
@@ -45,8 +46,10 @@ func _process(delta: float) -> void:
             circle_particles.amount_ratio = lerpf(0.5, 1, shape_dist / max_dist)
         else:
             circle_particles.amount_ratio = 0
+    if Engine.is_editor_hint():
+        circle_particles.amount_ratio = 1
 
-func _is_valid_ball(ball = null) -> bool:
+func _is_targeting_ball(ball = null) -> bool:
     return is_instance_valid(ball) and ball is Ball and ball.is_inside_tree()
 
 func _ready() -> void:
@@ -54,6 +57,9 @@ func _ready() -> void:
     #_log.set_id("paddle_hitbox")
     #_log.set_level(Logger.Level.DEBUG)
     add_to_group(Groups.PADDLE_HITBOX)
+    
+    indicator.hide()
+    circle_particles.amount_ratio = 0
 
     child_entered_tree.connect(_on_child_entered)
     body_entered_once.connect(_on_body_entered_once)
@@ -91,7 +97,6 @@ func hit(element: Node2D):
 func _config_updated():
     if not is_inside_tree():
         return
-    indicator.show()
     var collision_shape: CollisionShape2D = find_child("CollisionShape2D")
     if not collision_shape:
         circle_particles.amount_ratio = 0

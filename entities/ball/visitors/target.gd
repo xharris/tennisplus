@@ -26,7 +26,7 @@ func visit_ball(me: Ball):
     if last_target and target:
         _log.warn_if(
             not allow_repeat_target and last_target == target,
-            "illegal repeat target\n\tlast: %s (%d)\n\ttarget: %s" % [
+            "illegal repeated target\n\tlast: %s (%d)\n\ttarget: %s (%d)" % [
                 last_target, last_target.get_instance_id(), 
                 target, target.get_instance_id()
             ]

@@ -20,25 +20,31 @@ var _player1: Player
 ## enable new players to join
 var player_join_enabled: bool = true
 
+func accept(v: Visitor):
+    if v is PlayerManagerVisitor:
+        v.visit_player_manager(self)
+
 func _unhandled_input(event: InputEvent) -> void:
     if not player_join_enabled:
         return
-    for c in player_input_configs:
+    for input_config in player_input_configs:
         # check if player already exists
         var skip = false
         for p: Player in get_tree().get_nodes_in_group(Groups.PLAYER):
             var input: InputController = p.input_controller
-            if input is PlayerInput and input.config and input.config.name == c.name:
+            if input is PlayerInput and input.config and input.config.name == input_config.name:
                 skip = true
                 break
         if skip:
             continue
         # is a player trying to join?
-        if c.is_pressed(event, c.attack):
+        if input_config.is_pressed(event, input_config.attack):
             var config: PlayerConfig = DEFAULT_PLAYER_CONFIG.duplicate(true)
             for c2: PlayerConfig in player_configs:
                 if c2.input and c2.input.attack.is_match(event):
                     config = c2.duplicate(true)
+            if not config.input:
+                config.input = input_config
             var new_player = add_player(config)
 
 func add_player(config: PlayerConfig) -> Player:

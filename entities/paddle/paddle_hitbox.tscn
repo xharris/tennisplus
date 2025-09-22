@@ -52,7 +52,6 @@ metadata/_custom_type_script = "uid://dds5gb43it5ha"
 
 [node name="Indicator" type="Node2D" parent="."]
 unique_name_in_owner = true
-visible = false
 
 [node name="CircleParticles" type="GPUParticles2D" parent="Indicator"]
 unique_name_in_owner = true
