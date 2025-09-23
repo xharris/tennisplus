@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dmkhsoqol1ga3" path="res://entities/trail/trail.gd" id="1_mtgeq"]
 [ext_resource type="Shader" uid="uid://6k12fihjcu30" path="res://entities/weapon/weapon_contact_point.gdshader" id="2_a8icy"]
-[ext_resource type="Gradient" uid="uid://cp18gc42cbfd0" path="res://resources/weapons/sword/sword_fill_gradient.tres" id="3_ekb8l"]
+[ext_resource type="Gradient" uid="uid://cp18gc42cbfd0" path="res://resources/weapons/sword/sword_trail_gradient.tres" id="3_ekb8l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dyybr"]
 shader = ExtResource("2_a8icy")

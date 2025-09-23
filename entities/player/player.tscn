@@ -1,18 +1,21 @@
 [gd_scene load_steps=7 format=3 uid="uid://bpqew3gmdvmho"]
 
 [ext_resource type="Script" uid="uid://difudvxjv6pwf" path="res://entities/player/player.gd" id="1_symyc"]
-[ext_resource type="PackedScene" uid="uid://dghq8stxw47f2" path="res://entities/paddle/paddle.tscn" id="2_sglur"]
-[ext_resource type="Script" uid="uid://kqfyrs15oaxb" path="res://entities/ability/ability.gd" id="3_8fjmc"]
 [ext_resource type="PackedScene" uid="uid://cu5xx18rkgnol" path="res://entities/health/health_controller.tscn" id="4_bls4j"]
-[ext_resource type="Resource" uid="uid://cnd4g0mn3lx2e" path="res://resources/abilities/tipper/tipper.tres" id="5_qiwj3"]
+[ext_resource type="PackedScene" uid="uid://br6qddasa3gx6" path="res://entities/ball/ball_target.tscn" id="6_8fjmc"]
+[ext_resource type="PackedScene" uid="uid://d4nrff0rnv8n7" path="res://entities/ability/ability_controller.tscn" id="7_26q78"]
 [ext_resource type="PackedScene" uid="uid://qg7ch28gpmu5" path="res://entities/character/character_sprite.tscn" id="7_qiwj3"]
+[ext_resource type="PackedScene" uid="uid://blhuoy8yjxty3" path="res://entities/paddle/paddle_hitbox_contoller.tscn" id="8_bectd"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_symyc")
 
-[node name="Paddle" parent="." instance=ExtResource("2_sglur")]
-abilities = Array[ExtResource("3_8fjmc")]([ExtResource("5_qiwj3")])
-
 [node name="Health" parent="." instance=ExtResource("4_bls4j")]
 
 [node name="CharacterSprite" parent="." instance=ExtResource("7_qiwj3")]
+
+[node name="AbilityController" parent="." instance=ExtResource("7_26q78")]
+
+[node name="PaddleHitboxContoller" parent="." instance=ExtResource("8_bectd")]
+
+[node name="BallTarget" parent="." instance=ExtResource("6_8fjmc")]

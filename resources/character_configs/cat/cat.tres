@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CharacterConfig" load_steps=7 format=3 uid="uid://c4imblwu2g47s"]
+
+[ext_resource type="Texture2D" uid="uid://lag1inw4b0f2" path="res://resources/character_configs/cat/cat.png" id="1_d2clb"]
+[ext_resource type="Script" uid="uid://be0ne2wbni8ol" path="res://entities/character/visitors/palette.gd" id="1_yar7a"]
+[ext_resource type="Texture2D" uid="uid://d81xetfffldh" path="res://resources/character_configs/blank/hand.png" id="2_4sh3e"]
+[ext_resource type="Script" uid="uid://chtxmvehapm50" path="res://entities/character/character_config.gd" id="2_ghaej"]
+[ext_resource type="Resource" uid="uid://b8ggm8p4ni6i0" path="res://resources/character_configs/cat/palettes/orange/orange.tres" id="4_1cmt0"]
+[ext_resource type="Resource" uid="uid://btgc51rw7bndo" path="res://resources/character_configs/cat/palettes/purple/purple.tres" id="5_rotki"]
+
+[resource]
+script = ExtResource("2_ghaej")
+name = "cat"
+body_texture = ExtResource("1_d2clb")
+hand_texture = ExtResource("2_4sh3e")
+palettes = Array[ExtResource("1_yar7a")]([ExtResource("4_1cmt0"), ExtResource("5_rotki")])
+arm_length = 6
+arm_position = Vector2(8, 2)
+metadata/_custom_type_script = "uid://chtxmvehapm50"

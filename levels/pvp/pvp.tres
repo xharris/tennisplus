@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://dgxgbxl40eogh" path="res://levels/pvp/pvp.tscn" id="3_t1aq3"]
 [ext_resource type="Script" uid="uid://cv6m8wtrwqp7k" path="res://resources/range_int.gd" id="3_xys1n"]
 [ext_resource type="Resource" uid="uid://bmcw7ae6u5lpk" path="res://resources/health_visitors/reset_max.tres" id="4_fl1lt"]
-[ext_resource type="Resource" uid="uid://cbqljtm6u5idx" path="res://resources/ball_visitors/target_any_paddle.tres" id="4_gf442"]
+[ext_resource type="Resource" uid="uid://cbqljtm6u5idx" path="res://resources/ball_visitors/target_any_player.tres" id="4_gf442"]
 [ext_resource type="Resource" uid="uid://yqnex3abrwc7" path="res://resources/ball_visitors/at_least_1.tres" id="4_pp2g7"]
-[ext_resource type="Resource" uid="uid://cdr56dtnig3kb" path="res://resources/abilities/tipper/set_ball_damage_1.tres" id="6_nfjqb"]
+[ext_resource type="Resource" uid="uid://cdr56dtnig3kb" path="res://resources/weapons/sword/tipper/set_ball_damage_1.tres" id="6_nfjqb"]
 [ext_resource type="Resource" uid="uid://d3gkswqhlxxq5" path="res://levels/pvp/pvp_player_arrange.tres" id="8_nfjqb"]
 [ext_resource type="Resource" uid="uid://teegm0rjwqia" path="res://resources/level_manager_visitors/go_to_pvp_victory.tres" id="9_daank"]
 

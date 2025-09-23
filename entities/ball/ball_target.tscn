@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://br6qddasa3gx6"]
+
+[ext_resource type="Script" uid="uid://dkl8mqw2cee4p" path="res://entities/ball/ball_target.gd" id="1_thsdb"]
+
+[node name="BallTarget" type="Node2D"]
+script = ExtResource("1_thsdb")

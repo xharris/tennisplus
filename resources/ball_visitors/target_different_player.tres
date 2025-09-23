@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="BallTarget" load_steps=2 format=3 uid="uid://dnsce50mrw7cc"]
 
-[ext_resource type="Script" uid="uid://bk263x4npd36r" path="res://entities/ball/visitors/target.gd" id="1_8psq5"]
+[ext_resource type="Script" uid="uid://bk263x4npd36r" path="res://entities/ball/visitors/target.gd" id="1_a83ih"]
 
 [resource]
-script = ExtResource("1_8psq5")
-random_in_group = &"paddle"
+script = ExtResource("1_a83ih")
+random_in_group = &"health"
 allow_repeat_target = false
 metadata/_custom_type_script = "uid://bk263x4npd36r"

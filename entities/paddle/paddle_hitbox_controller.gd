@@ -10,7 +10,10 @@ var enabled: bool = false
 var _ignore_body: Dictionary
 
 func accept(v: Visitor):
-    accepted_visitor.emit(v)
+    if v is PaddleVisitor:
+        v.visit_paddle_hitbox(self)
+    else:
+        accepted_visitor.emit(v)
 
 func set_log_prefix(prefix: String):
     _log.set_prefix(prefix)

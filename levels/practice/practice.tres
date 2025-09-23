@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://yqnex3abrwc7" path="res://resources/ball_visitors/at_least_1.tres" id="4_o1fej"]
 [ext_resource type="Resource" uid="uid://xchqk60e7cax" path="res://resources/level_manager_visitors/go_to_previous_level.tres" id="4_oua3q"]
 [ext_resource type="Resource" uid="uid://b0xps821y1aas" path="res://resources/ball_visitors/destroy_all.tres" id="5_4v2ny"]
-[ext_resource type="Resource" uid="uid://cbqljtm6u5idx" path="res://resources/ball_visitors/target_any_paddle.tres" id="5_oua3q"]
+[ext_resource type="Resource" uid="uid://cbqljtm6u5idx" path="res://resources/ball_visitors/target_any_player.tres" id="5_oua3q"]
 [ext_resource type="Script" uid="uid://cv6m8wtrwqp7k" path="res://resources/range_int.gd" id="6_ikcdi"]
 [ext_resource type="Resource" uid="uid://d3mbie1e7ytdq" path="res://levels/practice/add_dummy_if_single.tres" id="8_22fyv"]
 [ext_resource type="Resource" uid="uid://d3gkswqhlxxq5" path="res://levels/pvp/pvp_player_arrange.tres" id="9_22fyv"]

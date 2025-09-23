@@ -27,6 +27,9 @@ func accept(v: Visitor):
     if v is HealthVisitor:
         v.visit_health(self)
 
+func _ready() -> void:
+    add_to_group(Groups.HEALTH)
+
 func set_log_prefix(prefix: String):
     _log.set_prefix(prefix)
 

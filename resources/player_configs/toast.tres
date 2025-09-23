@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PlayerConfig" load_steps=5 format=3 uid="uid://ch532ji25xf2e"]
 
-[ext_resource type="Resource" uid="uid://c2xosusryac78" path="res://resources/character_configs/frog/frog.tres" id="1_bfoer"]
+[ext_resource type="Resource" uid="uid://c4imblwu2g47s" path="res://resources/character_configs/cat/cat.tres" id="1_bfoer"]
 [ext_resource type="Resource" uid="uid://c5ih7ek7wcgor" path="res://resources/player_input_configs/player1_key.tres" id="2_2ejh3"]
 [ext_resource type="Script" uid="uid://bdtqd64nsacgq" path="res://entities/player/player_config.gd" id="3_4caej"]
 [ext_resource type="Resource" uid="uid://qxjclq40sykf" path="res://resources/weapons/sword/sword.tres" id="4_5kfld"]

@@ -1,15 +1,18 @@
 extends Resource
 class_name Ability
 
+enum ActivationType {
+    ## activated immediately
+    Passive,
+    ## can be activated after accumulating enough charge [0, 100]
+    Charge,
+    ## activated once player is on the last life
+    LastLife
+}
+
 @export var name: String
-@export var attack_cooldown: float = 1.0
+@export var type: ActivationType
 
-## visitors called as soon as they are added to the 
-## ability controller
-@export var passive: Array[Visitor]
-@export var on_attack: Array[Visitor]
-@export var on_special: Array[Visitor]
-@export var on_ultimate: Array[Visitor]
-
+@export var on_activate: Array[Visitor]
 @export var on_hit_ball: Array[Visitor]
 @export var on_hit_by_ball: Array[Visitor]

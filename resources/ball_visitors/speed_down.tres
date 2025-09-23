@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BallSpeed" load_steps=2 format=3 uid="uid://bfejey3di1cwl"]
+
+[ext_resource type="Script" uid="uid://3bywlq56klkw" path="res://entities/ball/visitors/speed.gd" id="1_xa1ot"]
+
+[resource]
+script = ExtResource("1_xa1ot")
+operation = 2
+speed_scale = 0.05
+metadata/_custom_type_script = "uid://3bywlq56klkw"

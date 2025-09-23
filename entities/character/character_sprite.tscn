@@ -92,8 +92,8 @@ speed_scale = 2.5
 
 [node name="Weapons" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-14.9363, 18.0601)
-rotation = -0.610865
+position = Vector2(35.99, 1.2505)
+rotation = 0.300849
 scale = Vector2(4, 4)
 
 [node name="Sword" parent="Weapons" instance=ExtResource("4_uojkm")]

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Palette" load_steps=4 format=3 uid="uid://btgc51rw7bndo"]
+
+[ext_resource type="Texture2D" uid="uid://m5v5yssh4653" path="res://resources/character_configs/cat/cat_palette_input.png" id="1_bymxq"]
+[ext_resource type="Script" uid="uid://be0ne2wbni8ol" path="res://entities/character/visitors/palette.gd" id="1_g6df4"]
+[ext_resource type="Texture2D" uid="uid://d07o6akp3jr7u" path="res://resources/character_configs/cat/palettes/purple/purple_ouput.png" id="2_tr7cw"]
+
+[resource]
+script = ExtResource("1_g6df4")
+color = Color(0.2024, 0.0184, 0.46, 1)
+name = &"purple"
+input = ExtResource("1_bymxq")
+output = ExtResource("2_tr7cw")
+metadata/_custom_type_script = "uid://be0ne2wbni8ol"

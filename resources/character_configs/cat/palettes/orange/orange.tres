@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Palette" load_steps=4 format=3 uid="uid://b8ggm8p4ni6i0"]
+
+[ext_resource type="Script" uid="uid://be0ne2wbni8ol" path="res://entities/character/visitors/palette.gd" id="1_hx0ps"]
+[ext_resource type="Texture2D" uid="uid://blyoq1nhdq7w" path="res://resources/character_configs/cat/palettes/orange/orange_output.png" id="1_j8hci"]
+[ext_resource type="Texture2D" uid="uid://m5v5yssh4653" path="res://resources/character_configs/cat/cat_palette_input.png" id="1_uqxyl"]
+
+[resource]
+script = ExtResource("1_hx0ps")
+color = Color(0.839216, 0.505882, 0, 1)
+name = &"orange"
+input = ExtResource("1_uqxyl")
+output = ExtResource("1_j8hci")
+metadata/_custom_type_script = "uid://be0ne2wbni8ol"

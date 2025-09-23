@@ -1,12 +1,58 @@
-[gd_scene load_steps=5 format=3 uid="uid://dghq8stxw47f2"]
+[gd_scene load_steps=5 format=3 uid="uid://di01ct2a38dy"]
 
-[ext_resource type="Script" uid="uid://c4gbleewti277" path="res://entities/paddle/paddle.gd" id="1_8l56v"]
 [ext_resource type="PackedScene" uid="uid://blhuoy8yjxty3" path="res://entities/paddle/paddle_hitbox_contoller.tscn" id="3_8l56v"]
 [ext_resource type="PackedScene" uid="uid://cu5xx18rkgnol" path="res://entities/health/health_controller.tscn" id="4_akf0g"]
 [ext_resource type="PackedScene" uid="uid://d4nrff0rnv8n7" path="res://entities/ability/ability_controller.tscn" id="5_wxl44"]
 
+[sub_resource type="GDScript" id="GDScript_8l56v"]
+script/source = "extends Node2D
+class_name Paddle
+
+var _log = Logger.new(\"paddle\")#, Logger.Level.DEBUG)
+@onready var hitbox_controller: PaddleHitboxController = $HitboxContoller
+@onready var ability_controller: AbilityController = $AbilityController
+@onready var health_controller: HealthController = $Health
+
+@export var abilities: Array[Ability]:
+    set(v):
+        abilities = v
+        if ability_controller:
+            ability_controller.abilities = abilities
+@export var input_controller: InputController:
+    set(v):
+        input_controller = v.duplicate(true)
+        _config_updated()
+
+func accept(v: Visitor):
+    if v is PaddleVisitor:
+        v.visit_paddle(self)
+    elif v is AbilityControllerVisitor:
+        v.visit_ability_controller(ability_controller)
+    elif v is HealthVisitor:
+        v.visit_health(health_controller)
+
+func set_log_prefix(prefix: String):
+    name = \"%s-paddle\" % [prefix]
+    _log.set_prefix(prefix)
+    hitbox_controller.set_log_prefix(prefix)
+    health_controller.set_log_prefix(prefix)
+    ability_controller.set_log_prefix(prefix)
+
+func _ready() -> void:
+    add_to_group(Groups.PADDLE)
+    
+    hitbox_controller.accepted_visitor.connect(accept)
+    ability_controller.accepted_visitor.connect(accept)
+    
+    hitbox_controller.hit.connect(ability_controller.hit)
+    health_controller.area2d.body_entered_once.connect(ability_controller.get_hit_by)
+    #health_controller.damage_taken.connect(ability_controller.take_damage)
+    
+"
+
 [node name="Paddle" type="Node2D"]
-script = ExtResource("1_8l56v")
+script = SubResource("GDScript_8l56v")
+abilities = null
 
 [node name="HitboxContoller" parent="." instance=ExtResource("3_8l56v")]
 

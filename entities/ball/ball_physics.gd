@@ -2,23 +2,24 @@
 extends Node2D
 class_name BallPhysics
 
-signal target_set(target: Node2D)
+signal target_set(target: BallTarget)
 
 var _log = Logger.new("ball_physics")#, Logger.Level.DEBUG)
 
 @export var apply_to: Node2D
 @export var speed_curve: Curve = Constants.BALL_SPEED_CURVE
+@export var speed_clamp: Vector2 = Vector2(0, 1)
 var speed_scale: float = 0.5:
     set(v):
-        speed_scale = clampf(v, 0, 1)
+        speed_scale = clampf(v, speed_clamp.x, speed_clamp.y)
         var curve_speed_scale = speed_curve.sample(speed_scale)
         _log.debug("speed scale: %f -> %f" % [speed_scale, curve_speed_scale])
         if _tween:
             _tween.set_speed_scale(curve_speed_scale)
 var curve_distance: RangeInt = Constants.BALL_PHYSICS_CONTROL_POINT_DISTANCE
 
-var _target: Node2D
-var _last_target: Node2D
+var _target: BallTarget
+var _last_target: BallTarget
 var _position_curve: Curve2D
 var _progress: float = 0
 var _tween: Tween
@@ -40,13 +41,13 @@ func _physics_process(delta: float) -> void:
         # maintain ball target path
         _position_curve.set_point_position(1, _target.global_position)
 
-func is_targeting(node: Node2D) -> bool:
-    return _target and node == _target or node.is_ancestor_of(_target)
-
-func get_last_target() -> Node2D:
+func get_last_target() -> BallTarget:
     return _last_target
 
-func set_target(target: Node2D):
+func get_target() -> BallTarget:
+    return _target
+
+func set_target(target: BallTarget):
     if _tween and _tween.is_running():
         _on_tween_finished()
     _log.debug("set target: %s -> %s" % [_last_target, target])

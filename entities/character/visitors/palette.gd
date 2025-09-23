@@ -4,10 +4,13 @@ class_name Palette
 static var _log = Logger.new("palette")
 static var SHADER: Shader = preload("res://addons/eye_dropper/eye_dropper.gdshader")
 
+@export var color: Color = Color.WHITE
+#@export var use_color_hue: bool
+
+@export_category("swap")
 @export var name: StringName
 @export var input: Texture2D
 @export var output: Texture2D
-@export var color: Color = Color.WHITE
 
 func visit_character_sprite(me: CharacterSprite):
     _log.info("set palette: %s" % [name])

@@ -8,13 +8,13 @@ var _log = Logger.new("paddle_hitbox")#, Logger.Level.DEBUG)
 @onready var indicator: Node2D = %Indicator
 @onready var circle_particles: GPUParticles2D = %CircleParticles
 @export var on_hit_ball: Array[Visitor]
-## [code]true[/code]: will not trigger overlapping PaddleHitbox
+## [code]true[/code]: will not trigger overlapping PaddleHitbox[br]
+## nodes higher in the tree will hit the ball first
 @export var stop_propagation: bool = true
 ## will auto-hit any body that enters
 @export var auto_hit: bool
-@export var indicator_palette: Palette
-## Dictionary[Ball, bool] balls that are targeting an ancestor
-var _targeting: Dictionary
+## show indicator for these nodes
+var _indicator_nodes: Array[Node2D]
 var shape_size: float = 0
 @export var color: Color = Color.hex(0xBDBDBDFF):
     set(v):
@@ -25,21 +25,20 @@ func accept(v: Visitor):
     accepted_visitor.emit(v)
 
 func _process(delta: float) -> void:
-    var balls: Array[Ball]
-    balls.assign(_targeting.keys().filter(_is_targeting_ball))
-    if balls.is_empty():
+    _indicator_nodes = _indicator_nodes.filter(SceneTreeUtil.is_valid_node)
+    if _indicator_nodes.is_empty():
         indicator.hide()
         circle_particles.amount_ratio = 0
     else:
         indicator.show()
         var dist: float = INF
-        var _closest_ball: Ball
-        for ball in balls:
-            var dist2: float = global_position.distance_to(ball.global_position)
-            if not _closest_ball or  dist2 < dist:
-                _closest_ball = ball
+        var _closest_node: Node2D
+        for node in _indicator_nodes:
+            var dist2: float = global_position.distance_to(node.global_position)
+            if not _closest_node or dist2 < dist:
+                _closest_node = node
                 dist = dist2
-        var max_dist = Constants.BALL_HITBOX_INDICATOR_DISTANCE
+        var max_dist = Constants.PADDLE_HITBOX_INDICATOR_DISTANCE
         var shape_dist = dist - shape_size
         if shape_dist > 0 and shape_dist < max_dist:
             var weight = lerpf(1, 0, clampi(shape_dist / max_dist, 0, max_dist))
@@ -49,13 +48,8 @@ func _process(delta: float) -> void:
     if Engine.is_editor_hint():
         circle_particles.amount_ratio = 1
 
-func _is_targeting_ball(ball = null) -> bool:
-    return is_instance_valid(ball) and ball is Ball and ball.is_inside_tree()
-
 func _ready() -> void:
     super._ready()
-    #_log.set_id("paddle_hitbox")
-    #_log.set_level(Logger.Level.DEBUG)
     add_to_group(Groups.PADDLE_HITBOX)
     
     indicator.hide()
@@ -63,8 +57,6 @@ func _ready() -> void:
 
     child_entered_tree.connect(_on_child_entered)
     body_entered_once.connect(_on_body_entered_once)
-    if not Engine.is_editor_hint():
-        BallManager.ball_created.connect(_on_ball_created)
     
     _config_updated()
 
@@ -72,18 +64,6 @@ func _on_child_entered(node: Node2D):
     if not node.tree_exited.is_connected(_config_updated):
         node.tree_exited.connect(_config_updated)
     _config_updated()
-
-func _on_ball_created(ball: Ball):
-    ball.physics.target_set.connect(_on_ball_target_set.bind(ball))
-
-func _on_ball_target_set(target: Node2D, ball: Ball):
-    if target.is_ancestor_of(self):
-        _log.debug("ball targeting: %s -> %s" % [ball, target])
-        _targeting.set(ball, true)
-        _config_updated()
-    else:
-        _targeting.erase(ball)
-        _config_updated()
 
 func _on_body_entered_once(body: Node2D):
     _log.debug("entered: %s" % body)
@@ -93,6 +73,14 @@ func _on_body_entered_once(body: Node2D):
 
 func hit(element: Node2D):
     Visitor.visit_any(element, on_hit_ball)
+
+## show the indicator when the given node gets close
+func add_indicator_node(node: Node2D):
+    if not _indicator_nodes.has(node):
+        _indicator_nodes.append(node)
+    
+func remove_indicator_node(node: Node2D):
+    _indicator_nodes = _indicator_nodes.filter(func(n): return n != node)
 
 func _config_updated():
     if not is_inside_tree():
