@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=3 format=3 uid="uid://fj8tukdkku5"]
+
+[ext_resource type="Script" uid="uid://boxv8r0ghnp21" path="res://resources/visitor.gd" id="1_o53kf"]
+[ext_resource type="Script" uid="uid://kqfyrs15oaxb" path="res://entities/ability/ability.gd" id="2_76v1e"]
+
+[resource]
+script = ExtResource("2_76v1e")
+name = "assault"
+type = 1
+on_activate = Array[ExtResource("1_o53kf")]([])
+on_hit_ball = Array[ExtResource("1_o53kf")]([])
+on_hit_by_ball = Array[ExtResource("1_o53kf")]([])
+metadata/_custom_type_script = "uid://kqfyrs15oaxb"

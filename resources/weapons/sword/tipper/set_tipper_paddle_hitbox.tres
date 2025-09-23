@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="PaddleVisitHitbox" load_steps=3 format=3 uid="uid://de8mfdd80p6gy"]
 
-[ext_resource type="PackedScene" uid="uid://x88a7460y3x3" path="res://resources/weapons/sword/tipper/tipper_paddle_hitbox.tscn" id="1_pygi4"]
-[ext_resource type="Script" uid="uid://bi0viw7jb5xss" path="res://entities/paddle/visitors/hitbox.gd" id="2_8228q"]
+[ext_resource type="PackedScene" uid="uid://x88a7460y3x3" path="res://resources/weapons/sword/tipper/tipper_paddle_hitbox.tscn" id="1_pqvnc"]
+[ext_resource type="Script" uid="uid://bi0viw7jb5xss" path="res://entities/paddle_hitbox/visitors/hitbox.gd" id="2_0d4yg"]
 
 [resource]
-script = ExtResource("2_8228q")
-scene = ExtResource("1_pygi4")
+script = ExtResource("2_0d4yg")
+scene = ExtResource("1_pqvnc")
 metadata/_custom_type_script = "uid://bi0viw7jb5xss"

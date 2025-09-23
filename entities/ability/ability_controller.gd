@@ -57,6 +57,7 @@ func hit(element: Node2D):
     for a in abilities:
         Visitor.visit_any(self, a.on_hit_ball)
         Visitor.visit_any(element, a.on_hit_ball)
+    increase_meter()
 
 func has_ability(ability_name: String) -> bool:
     for a in abilities:

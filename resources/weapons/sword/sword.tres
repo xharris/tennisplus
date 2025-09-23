@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="WeaponConfig" load_steps=6 format=3 uid="uid://qxjclq40sykf"]
+[gd_resource type="Resource" script_class="WeaponConfig" load_steps=7 format=3 uid="uid://qxjclq40sykf"]
 
 [ext_resource type="Script" uid="uid://dqxipss3m6uis" path="res://entities/weapon/weapon_config.gd" id="1_7kig6"]
 [ext_resource type="PackedScene" uid="uid://dkotr2ml8xpc7" path="res://resources/weapons/sword/sword.tscn" id="1_14lku"]
 [ext_resource type="AnimationLibrary" uid="uid://c8kmu88txmigu" path="res://resources/weapons/sword/sword_animation.res" id="1_25be7"]
 [ext_resource type="Script" uid="uid://kqfyrs15oaxb" path="res://entities/ability/ability.gd" id="2_c5132"]
 [ext_resource type="Resource" uid="uid://cnd4g0mn3lx2e" path="res://resources/weapons/sword/tipper/tipper.tres" id="2_oux5e"]
+[ext_resource type="Resource" uid="uid://fj8tukdkku5" path="res://resources/weapons/sword/assault/assault.tres" id="3_oux5e"]
 
 [resource]
 script = ExtResource("1_7kig6")
@@ -13,5 +14,5 @@ scene = ExtResource("1_14lku")
 animations = ExtResource("1_25be7")
 can_reverse_animation = true
 arm_length = 12
-abilities = Array[ExtResource("2_c5132")]([ExtResource("2_oux5e")])
+abilities = Array[ExtResource("2_c5132")]([ExtResource("2_oux5e"), ExtResource("3_oux5e")])
 metadata/_custom_type_script = "uid://dqxipss3m6uis"

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://b5ojur7k7urdw"]
 
-[ext_resource type="Script" uid="uid://babhlywige3u0" path="res://entities/paddle/paddle_hitbox.gd" id="1_8niss"]
+[ext_resource type="Script" uid="uid://babhlywige3u0" path="res://entities/paddle_hitbox/paddle_hitbox.gd" id="1_8niss"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hn7sl"]
 load_path = "res://.godot/imported/circle.png-3d96ad45b8f5fefd8b1b5e6b39e5e98b.ctex"
